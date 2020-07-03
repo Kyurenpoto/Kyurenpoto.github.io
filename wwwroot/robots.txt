@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: http://kyurenpoto.github.io/sitemap.xml
+Sitemap: http://kyurenpoto.github.io/blog/sitemap.xml
