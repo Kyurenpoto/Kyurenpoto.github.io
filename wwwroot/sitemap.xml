@@ -8,8 +8,6 @@
 
 <url>
    <loc>https://kyurenpoto.github.io/blog/</loc>
-   <lastmod>2020-07-03T04:44:08+00:00</lastmod>
-   <changefreq>always</changefreq>
-   <priority>1.0000</priority>
+   <loc>https://kyurenpoto.github.io/blog/machinelearning</loc>
 </url>
 </urlset>
