@@ -14,6 +14,11 @@
 <!--Favicon-->
 <Link Rel="shortcut icon" Href="favicon.ico" />
 <Link Rel="icon" Href="favicon.ico" />
+<!--StyleSheet-->>
+@if (!(pathCSS is null) && pathCSS.Equals(""))
+{
+    <Link Rel="stylesheet" Href="@pathCSS" />
+}
 
 @code {
     private static string root = "https://Kyurenpoto.github.io/blog";
@@ -25,6 +30,8 @@
     public string title { get; set; }
     [Parameter]
     public string description { get; set; }
+    [Parameter]
+    public string pathCSS { get; set; }
 
     private string PageTitle { get { return title + baseTitle; } }
     private string PageUrl { get { return root + route; } }
