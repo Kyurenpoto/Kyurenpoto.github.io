@@ -2,53 +2,674 @@
 
 <MetaTags title="논문 리뷰: Implicit Neural Representations with Periodic Activation Functions - " description="'Implicit Neural Representations with Periodic Activation Functions' 논문을 리뷰한다." route="/post/1" />
 
-<Markdown content="@content"/>
+<h1>논문 리뷰: Implicit Neural Representations with Periodic Activation Functions</h1>
 
-@code {
-    private string content =
-        "# 논문 리뷰: Implicit Neural Representations with Periodic Activation Functions\n\n" +
-        "논문 링크: https://arxiv.org/abs/2006.09661\n\n" +
-        "논문의 초록, 서론, 결론을 종합하면 다음과 같다.\n\n" +
-        "1. 기존의 ReLU 기반 MLP는 입력 신호의 고차 미분을 나타낼 수 없기 때문에 미세 표현 능력이 부족하다.\n" +
-        "2. 이를 개선하기 위해 주기 함수를 활성 함수로 사용해서 고차 미분 정보를 회손하지 않도록 했다.\n" +
-        "3. 다양한 문제에서 기존 모델과 비교했을 때 더 나은 표현을 보임을 실험을 통해 증명했다.\n\n" +
-        "## 수식 유도\n\n" +
-        "우리가 풀어야 하는 식은 다음과 같다.\n\n" +
-        "$F\\left(\\mathbf{x},\\Phi\\left(\\mathbf{x}\\right),\\nabla\\Phi\\left(\\mathbf{x}\\right),\\cdots\\right)=0$\n\n" +
-        "이걸 $M$ 개의 제약 조건에 대한 식으로 다음과 같이 바꿀 수 있다.\n\n" +
-        "$C_m\\left(a\\left(\\mathbf{x}\\right),\\Phi\\left(\\mathbf{x}\\right),\\nabla\\Phi\\left(\\mathbf{x}\\right),\\cdots\\right)=0" +
-        "\\left(\\forall\\mathbf{x}\\in Y_m\\right)\\left(m=1,\\cdots,M\\right)$\n\n" +
-        "이 식은 다시 손실 함수로 변환할 수 있다.\n\n" +
-        "$L=\\int_{\\Omega}\\Sigma_{m=1}^{M}1_{\\Omega_m}\\left(\\mathbf{x}\\right)" +
-        "\\left\\Vert C_m\\left(a\\left(\\mathbf{x}\\right),\\Phi\\left(\\mathbf{x}\\right),\\nabla\\Phi\\left(\\mathbf{x}\\right),\\cdots\\right)\\right\\Vert d\\mathbf{x}" +
-        "\\left(1_{\\Omega_m}\\left(\\mathbf{x}\\right)=1 when \\mathbf{x}\\in\\Omega_m, 0 when \\mathbf{x}\\notin\\Omega_m\\right)$\n\n" +
-        "손실 함수는 $\\Phi\\left(\\mathbf{x}\\right)$ 의 정의역에서 샘플링해서 추정한다. " +
-        "데이터 셋은 $\\left\\{\\mathbf{x}_i,a_i\\left(\\mathbf{x}\\right)\\right}$ 의 형태로 주어진다. 따라서 Loss는 다음과 같다.\n\n" +
-        "$\\bar{L}=\\Sigma_{i\\in D}\\Sigma_{m=1}^{M}" +
-        "\\left\\Vert C_m\\left(a\\left(\\mathbf{x}_i),\\Phi\\left(\\mathbf{x}_i\\right),\\nabla\\Phi\\left(\\mathbf{x}_i\\right),\\cdots\\right)\\right\\Vert$\n\n" +
-        "이 때 데이터 셋은 실행 중 동적으로 추출된다.\n\n" +
-        "### SIREN 활성함수\n\n" +
-        "논문에서 제안하는 SIREN 활성함수는 다음과 같다.\n\n" +
-        "$\\Phi\\left(\\mathbf{x}\\right)=\\mathbf{W}_n\\left(\\phi_{n-1}\\circ\\phi_{n-2}\\circ...\\circ\\phi_0\\right)\\left(\\mathbf{x}\\right)+\\mathbf{b}_n," +
-        "\\phi_{i}\\left(\\mathbf{x}_i\\right)=\\sin\\left(\\mathbf{W}_i\\mathbf{x}_i+\\mathbf{b}_i\\right)$\n\n" +
-        "여기서 $i$ 는 몇 번째 레이어인지를 나타낸다. 이렇게 정의된 SIREN을 미분하면 또 SIREN이 된다. SIREN의 미분은 SIREN의 특성을 상속하므로, 고차 미분을 통해 복잡한 신호의 특성을 분석할 수 있다.\n\n" +
-        "### SIREN 초기화\n\n" +
-        "또한 논문에서는 SIREN의 효과적인 학습에 필요한 초기화 원칙을 제시한다. " +
-        "초기화 체계의 핵심 아이디어는 네트워크를 통한 활성화 분포를 유지해서, 초기화시 최종 출력이 레이어 수에 의존하지 않도록 하는 것이다. " +
-        "균일하게 분산된 가중치를 신중하게 선택하지 않으면 정확도와 수렴 속도 모두에서 성능이 저하된다.\n\n" +
-        "먼저 균등 분포 상의 입력 $x~U\\left(-1,1\\right)$ 를 가진 단일 사인 뉴런의 출력 분포를 고려한다. " +
-        "뉴런의 출력은 $y=\\sin\\left(ax+b\\right)\\left(a,b\\in\\mathbb{R}\\right)$ 이다. 임의의 $a>\\pi/2$ 에 대해 사인 함수의 출력의 분포는 $y~\\arcsin\\left(-1,1\\right)$ 이다. " +
-        "이것은 U자형 베타 분포의 특별한 경우이며, $\\mathbf{b}$ 와는 무관하다.\n\n" +
-        "이를 통해 뉴런의 출력 분포에 대해 추론할 수 있다. " +
-        "$\\mathbb{R}^n$ 상의 가중치 $\\mathbf{w}$ 와 $\\mathbb{R}^n$ 상의 입력 $\\mathbf{x}$ 의 선형 조합을 취하면, " +
-        "출력은 $y=\\sin\\left(\\mathbf{w}^T\\mathbf{x}+\\mathbf{b}\\right)$ 이다. " +
-        "이 뉴런이 두 번째 층에 있다고 가정하면, 각 입력은 $\\arcsin$ 분포이다. " +
-        "$\\mathbf{w}$ 의 각 성분이 $w_i~U\\left(-\\sqrt{c/n},\\sqrt{c/n}\\right)\\left(c\\in\\mathbb{R}\\right)$ 로 균일하게 분포할 때, " +
-        "논문에서는 $n$ 이 커질수록 내적이 정규 분포 $\\mathbf{w}^T\\mathbf{x}~N\\left(0,c^2/6\\right)$ 에 수렴함을 보였다. " +
-        "이 정규분포 위의 내적을 다른 사인 함수에 먹이면 모든 $c>\\sqrt{6}$ 에 대해 $\\arcsin$ 분포하게 된다. SIREN의 가중치는 각도 주파수로 해석될 수 있으며, 편향은 위상 오프셋이다. " +
-        "따라서 네트워크에서 큰 주파수는 큰 가중치에 대해 나타난다. 사인 레이어는 내적의 절대값이 $\\pi$ 보다 작은 경우 주파수를 거의 변경하지 않는다. 절대값이 더 커지면 주파수가 증가한다.\n\n" +
-        "이를 종합해서 논문은 $c=6$ 으로 두고 $w_i~U\\left(-\\sqrt{6/n}, \\sqrt{6/n}\\right)$ 로 분포시키는 것을 제안한다. " +
-        "이는 각 사인 활성함수의 입력이 표준편차 1인 정규분포를 유지하도록 한다. $\\pi$ 보다 더 큰 가중치는 거의 없으므로, 사인 네트워크 전체의 주파수는 느리게 증가한다(robust). " +
-        "또한 사인 함수가 $[-1, 1]$ 를 넘어 여러 주기에 걸쳐 있도록 사인 네트워크의 첫 번째 레이어를 가중치 $\\omega_0=30$ 으로 초기화할 것을 제안한다. 이 값은 여러 실험을 통해 도출해낸 값이다. " +
-        "이 초기화 방식에 의해 논문에서 행한 모든 실험에서 ADAM Optimizer를 사용한 빠르고 강건한 수렴이 나타난다.";
-}
+<p>논문 링크: <a href="https://arxiv.org/abs/2006.09661">https://arxiv.org/abs/2006.09661</a></p>
+<p>논문의 초록, 서론, 결론을 종합하면 다음과 같다.</p>
+<ol>
+    <li>기존의 ReLU 기반 MLP는 입력 신호의 고차 미분을 나타낼 수 없기 때문에 미세 표현 능력이 부족하다.</li>
+    <li>이를 개선하기 위해 주기 함수를 활성 함수로 사용해서 고차 미분 정보를 회손하지 않도록 했다.</li>
+    <li>다양한 문제에서 기존 모델과 비교했을 때 더 나은 표현을 보임을 실험을 통해 증명했다.</li>
+</ol>
+
+<h2>수식 유도</h2>
+
+<p>우리가 풀어야 하는 식은 다음과 같다.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mrow>
+        <mi>F</mi>
+        <mrow>
+            <mo>(</mo>
+            <mtext mathvariant="bold">
+                <mi>x</mi>
+            </mtext>
+            <mo>,</mo>
+            <mi>&Phi;</mi>
+            <mrow>
+                <mo>(</mo>
+                <mtext mathvariant="bold">
+                    <mi>x</mi>
+                </mtext>
+                <mo>)</mo>
+            </mrow>
+            <mo>,</mo>
+            <mo>&nabla;</mo>
+            <mi>&Phi;</mi>
+            <mrow>
+                <mo>(</mo>
+                <mtext mathvariant="bold">
+                    <mi>x</mi>
+                </mtext>
+                <mo>)</mo>
+            </mrow>
+            <mo>,</mo>
+            <mo>&ctdot;</mo>
+            <mo>)</mo>
+        </mrow>
+        <mo>=</mo>
+        <mn>0</mn>
+    </mrow>
+</math>
+<p>이걸 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mrow>
+        <mi>M</mi>
+    </mrow>
+</math> 개의 제약 조건에 대한 식으로 다음과 같이 바꿀 수 있다.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mrow>
+        <msub>
+            <mi>C</mi>
+            <mi>m</mi>
+        </msub>
+        <mrow>
+            <mo>(</mo>
+            <mi>a</mi>
+            <mrow>
+                <mo>(</mo>
+                <mi mathvariant="bold">x</mi>
+                <mo>)</mo>
+            </mrow>
+            <mo>,</mo>
+            <mi>&Phi;</mi>
+            <mrow>
+                <mo>(</mo>
+                <mi mathvariant="bold">x</mi>
+                <mo>)</mo>
+            </mrow>
+            <mo>,</mo>
+            <mo>&nabla;</mo>
+            <mi>&Phi;</mi>
+            <mrow>
+                <mo>(</mo>
+                <mtext mathvariant="bold">
+                    <mi>x</mi>
+                </mtext>
+                <mo>)</mo>
+            </mrow>
+            <mo>,</mo>
+            <mo>&ctdot;</mo>
+            <mo>)</mo>
+        </mrow>
+        <mo>=</mo>
+        <mn>0</mn>
+        <mspace width="1em" />
+        <mo>(</mo>
+        <mo>&forall;</mo>
+        <mi mathvariant="bold">x</mi>
+        <mo>&isin;</mo>
+        <msub>
+            <mo>&Omega;</mo>
+            <mi>m</mi>
+        </msub>
+        <mspace width="1ex" />
+        <mi>m</mi>
+        <mo>&isin;</mo>
+        <mrow>
+            <mo>{</mo>
+            <mn>1</mn>
+            <mo>,</mo>
+            <mo>&ctdot;</mo>
+            <mo>,</mo>
+            <mi>M</mi>
+            <mo>}</mo>
+        </mrow>
+        <mo>)</mo>
+    </mrow>
+</math>
+<p>이 식은 다시 손실 함수로 변환할 수 있다.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mrow>
+        <mi>L</mi>
+        <mo>=</mo>
+        <mrow>
+            <msub>
+                <mo>&int;</mo>
+                <mo>&Omega;</mo>
+            </msub>
+            <mrow>
+                <msubsup>
+                    <mo>&sum;</mo>
+                    <mrow>
+                        <mi>m</mi>
+                        <mo>=</mo>
+                        <mn>1</mn>
+                    </mrow>
+                    <mi>M</mi>
+                </msubsup>
+                <msub>
+                    <mn>1</mn>
+                    <msub>
+                        <mo>&Omega;</mo>
+                        <mi>m</mi>
+                    </msub>
+                </msub>
+                <mrow>
+                    <mo>(</mo>
+                    <mi mathvariant="bold">x</mi>
+                    <mo>)</mo>
+                </mrow>
+                <mrow>
+                    <mo>&Vert;</mo>
+                    <msub>
+                        <mi>C</mi>
+                        <mi>m</mi>
+                    </msub>
+                    <mrow>
+                        <mo>(</mo>
+                        <mi>a</mi>
+                        <mrow>
+                            <mo>(</mo>
+                            <mi mathvariant="bold">x</mi>
+                            <mo>)</mo>
+                        </mrow>
+                        <mo>,</mo>
+                        <mi>&Phi;</mi>
+                        <mrow>
+                            <mo>(</mo>
+                            <mi mathvariant="bold">x</mi>
+                            <mo>)</mo>
+                        </mrow>
+                        <mo>,</mo>
+                        <mo>&nabla;</mo>
+                        <mi>&Phi;</mi>
+                        <mrow>
+                            <mo>(</mo>
+                            <mtext mathvariant="bold">
+                                <mi>x</mi>
+                            </mtext>
+                            <mo>)</mo>
+                        </mrow>
+                        <mo>,</mo>
+                        <mo>&ctdot;</mo>
+                        <mo>)</mo>
+                    </mrow>
+                    <mo>&Vert;</mo>
+                </mrow>
+                <mi>d</mi>
+                <mi mathvariant="bold">x</mi>
+            </mrow>
+            <mspace width="1em" />
+            <mrow>
+                <mo>(</mo>
+                <msub>
+                    <mn>1</mn>
+                    <msub>
+                        <mo>&Omega;</mo>
+                        <mi>m</mi>
+                    </msub>
+                </msub>
+                <mrow>
+                    <mo>(</mo>
+                    <mi mathvariant="bold">x</mi>
+                    <mo>)</mo>
+                </mrow>
+                <mo>=</mo>
+                <mo>{</mo>
+                <mtable align="center">
+                    <mtr>
+                        <mtd>
+                            <mn>1</mn>
+                            <mspace width="1em" />
+                            <mi mathvariant="bold">x</mi>
+                            <mo>&isin;</mo>
+                            <msub>
+                                <mo>&Omega;</mo>
+                                <mi>m</mi>
+                            </msub>
+                        </mtd>
+                    </mtr>
+                    <mtr>
+                        <mtd>
+                            <mn>0</mn>
+                            <mspace width="1em" />
+                            <mi mathvariant="bold">x</mi>
+                            <mo>&notin;</mo>
+                            <msub>
+                                <mo>&Omega;</mo>
+                                <mi>m</mi>
+                            </msub>
+                        </mtd>
+                    </mtr>
+                </mtable>
+                <mo>)</mo>
+            </mrow>
+        </mrow>
+    </mrow>
+</math>
+<p>손실 함수는 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mrow>
+        <mi>&Phi;</mi>
+        <mrow>
+            <mo>(</mo>
+            <mi mathvariant="bold">x</mi>
+            <mo>)</mo>
+        </mrow>
+    </mrow>
+</math> 의 정의역에서 샘플링해서 추정한다. 데이터 셋은 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mrow>
+        <mrow>
+            <mo>{</mo>
+            <msub>
+                <mi mathvariant="bold">x</mi>
+                <mi>i</mi>
+            </msub>
+            <mo>,</mo>
+            <msub>
+                <mi>a</mi>
+                <mi>i</mi>
+            </msub>
+            <mrow>
+                <mo>(</mo>
+                <mi mathvariant="bold">x</mi>
+                <mo>)</mo>
+            </mrow>
+            <mo>}</mo>
+        </mrow>
+    </mrow>
+</math> 의 형태로 주어진다. 따라서 Loss는 다음과 같다.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mrow>
+        <mover>
+            <mrow>
+                <mi>L</mi>
+            </mrow>
+            <mo>&horbar;</mo>
+        </mover>
+        <mo>=</mo>
+        <mrow>
+            <msub>
+                <mo>&sum;</mo>
+                <mrow>
+                    <mi>i</mi>
+                    <mo>&isin;</mo>
+                    <mi>D</mi>
+                </mrow>
+            </msub>
+            <mrow>
+                <msubsup>
+                    <mo>&sum;</mo>
+                    <mrow>
+                        <mi>m</mi>
+                        <mo>=</mo>
+                        <mn>1</mn>
+                    </mrow>
+                    <mi>M</mi>
+                </msubsup>
+                <mrow>
+                    <mo>&Vert;</mo>
+                    <msub>
+                        <mi>C</mi>
+                        <mi>m</mi>
+                    </msub>
+                    <mrow>
+                        <mo>(</mo>
+                        <mi>a</mi>
+                        <mrow>
+                            <mo>(</mo>
+                            <mi mathvariant="bold">x</mi>
+                            <mo>)</mo>
+                        </mrow>
+                        <mo>,</mo>
+                        <mi>&Phi;</mi>
+                        <mrow>
+                            <mo>(</mo>
+                            <mi mathvariant="bold">x</mi>
+                            <mo>)</mo>
+                        </mrow>
+                        <mo>,</mo>
+                        <mo>&nabla;</mo>
+                        <mi>&Phi;</mi>
+                        <mrow>
+                            <mo>(</mo>
+                            <mtext mathvariant="bold">
+                                <mi>x</mi>
+                            </mtext>
+                            <mo>)</mo>
+                        </mrow>
+                        <mo>,</mo>
+                        <mo>&ctdot;</mo>
+                        <mo>)</mo>
+                    </mrow>
+                    <mo>&Vert;</mo>
+                </mrow>
+                <mi>d</mi>
+                <mi mathvariant="bold">x</mi>
+            </mrow>
+        </mrow>
+    </mrow>
+</math>
+<p>이 때 데이터 셋은 실행 중 동적으로 추출된다.</p>
+
+<h3>SIREN 활성함수</h3>
+
+<p>논문에서 제안하는 SIREN 활성함수는 다음과 같다.</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+    <mrow>
+        <mo>&Phi;</mo>
+        <mrow>
+            <mo>(</mo>
+            <mi mathvariant="bold">x</mi>
+            <mo>)</mo>
+        </mrow>
+        <mo>=</mo>
+        <msub>
+            <mi mathvariant="bold">M</mi>
+            <mi>n</mi>
+        </msub>
+        <mrow>
+            <mo>(</mo>
+            <msub>
+                <mo>&phi;</mo>
+                <mrow>
+                    <mi>n</mi>
+                    <mo>-</mo>
+                    <mn>1</mn>
+                </mrow>
+            </msub>
+            <mo>&compfn;</mo>
+            <msub>
+                <mo>&phi;</mo>
+                <mrow>
+                    <mi>n</mi>
+                    <mo>-</mo>
+                    <mn>2</mn>
+                </mrow>
+            </msub>
+            <mo>&compfn;</mo>
+            <mo>&ctdot;</mo>
+            <mo>&compfn;</mo>
+            <msub>
+                <mo>&phi;</mo>
+                <mn>0</mn>
+            </msub>
+            <mo>)</mo>
+        </mrow>
+        <mrow>
+            <mo>(</mo>
+            <mi mathvariant="bold">x</mi>
+            <mo>)</mo>
+        </mrow>
+        <mo>+</mo>
+        <msub>
+            <mi mathvariant="bold">b</mi>
+            <mi>n</mi>
+        </msub>
+        <mspace width="1em" />
+        <mrow>
+            <mo>(</mo>
+            <msub>
+                <mo>&phi;</mo>
+                <mi>i</mi>
+            </msub>
+            <mrow>
+                <mo>(</mo>
+                <msub>
+                    <mi mathvariant="bold">x</mi>
+                    <mi>i</mi>
+                </msub>
+                <mo>)</mo>
+            </mrow>
+            <mo>=</mo>
+            <mi mathvarint="normal">sin</mi>
+            <mrow>
+                <mo>(</mo>
+                <msub>
+                    <mi mathvariant="bold">W</mi>
+                    <mi>i</mi>
+                </msub>
+                <msub>
+                    <mi mathvariant="bold">x</mi>
+                    <mi>i</mi>
+                </msub>
+                <mo>+</mo>
+                <msub>
+                    <mi mathvariant="bold">b</mi>
+                    <mi>i</mi>
+                </msub>
+                <mo>)</mo>
+            </mrow>
+            <mo>)</mo>
+        </mrow>
+    </mrow>
+</math>
+<p>여기서 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mrow>
+        <mi>i</mi>
+    </mrow>
+</math> 는 몇 번째 레이어인지를 나타낸다. 이렇게 정의된 SIREN을 미분하면 또 SIREN이 된다. SIREN의 미분은 SIREN의 특성을 상속하므로, 고차 미분을 통해 복잡한 신호의 특성을 분석할 수 있다.</p>
+
+<h3>SIREN 초기화</h3>
+
+<p>논문에서는 SIREN의 효과적인 학습에 필요한 초기화 원칙도 제시한다. 초기화 체계의 핵심 아이디어는 네트워크를 통한 활성화 분포를 유지해서, 초기화시 최종 출력이 레이어 수에 의존하지 않도록 하는 것이다. 균일하게 분산된 가중치를 신중하게 선택하지 않으면 정확도와 수렴 속도 모두에서 성능이 저하된다.</p>
+<p>먼저 균등 분포 상의 입력 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mrow>
+        <mi>x</mi>
+        <mo>&sim;</mo>
+        <mi>U</mi>
+        <mrow>
+            <mo>(</mo>
+            <mn>-1</mn>
+            <mo>,</mo>
+            <mn>1</mn>
+            <mo>)</mo>
+        </mrow>
+    </mrow>
+</math> 를 가진 단일 사인 뉴런의 출력 분포를 고려한다. 뉴런의 출력은 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mrow>
+        <mi mathvariant="normal">sin</mi>
+        <mrow>
+            <mo>(</mo>
+            <mi>ax</mi>
+            <mo>+</mo>
+            <mi>b</mi>
+            <mo>)</mo>
+        </mrow>
+        <mspace width="1em" />
+        <mrow>
+            <mo>(</mo>
+            <mi>a</mi>
+            <mo>,</mo>
+            <mi>b</mi>
+            <mo>&isin;</mo>
+            <mi mathvariant="double-struck">R</mi>
+            <mo>)</mo>
+        </mrow>
+    </mrow>
+</math> 이다. 임의의 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mrow>
+        <mi>a</mi>
+        <mo>&gt;</mo>
+        <mfrac>
+            <mo>&pi;</mo>
+            <mn>2</mn>
+        </mfrac>
+        <mo></mo>
+    </mrow>
+</math> 에 대해 사인 함수의 출력의 분포는 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mrow>
+        <mi>y</mi>
+        <mo>&sim;</mo>
+        <mi mathvariant="normal">arcsin</mi>
+        <mrow>
+            <mo>(</mo>
+            <mn>-1</mn>
+            <mo>,</mo>
+            <mn>1</mn>
+            <mo>)</mo>
+        </mrow>
+    </mrow>
+</math> 이다. 이것은 U자형 베타 분포의 특별한 경우이며, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mrow>
+        <mi mathvariant="bold">b</mi>
+    </mrow>
+</math> 와는 무관하다.</p>
+<p>이를 통해 뉴런의 출력 분포에 대해 추론할 수 있다. <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mrow>
+        <msup>
+            <mi mathvariant="double-struck">R</mi>
+            <mi>n</mi>
+        </msup>
+    </mrow>
+</math> 상의 가중치 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mrow>
+        <mi mathvariant="bold">n</mi>
+    </mrow>
+</math> 와 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mrow>
+        <msup>
+            <mi mathvariant="double-struck">R</mi>
+            <mi>n</mi>
+        </msup>
+    </mrow>
+</math> 상의 입력 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mrow>
+        <mi mathvariant="bold">x</mi>
+    </mrow>
+</math> 의 선형 조합을 취하면, 출력은 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mrow>
+        <mi>y</mi>
+        <mo>=</mo>
+        <mi mathvariant="normal">sin</mi>
+        <mrow>
+            <mo>(</mo>
+            <msup>
+                <mi mathvariant="bold">w</mi>
+                <mi>T</mi>
+            </msup>
+            <mi mathvariant="bold">x</mi>
+            <mo>+</mo>
+            <mi mathvariant="bold">b</mi>
+            <mo>)</mo>
+        </mrow>
+    </mrow>
+</math> 이다. 이 뉴런이 두 번째 층에 있다고 가정하면, 각 입력은 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mrow>
+        <mi mathvariant="normal">arcsin</mi>
+    </mrow>
+</math> 분포이다. <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mrow>
+        <mi mathvariant="bold">w</mi>
+    </mrow>
+</math> 의 각 성분이 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mrow>
+        <msub>
+            <mi>w</mi>
+            <mi>i</mi>
+        </msub>
+        <mo>&sim;</mo>
+        <mi>U</mi>
+        <mrow>
+            <mo>(</mo>
+            <mo>-</mo>
+            <mi>c</mi>
+            <mo>/</mo>
+            <msqrt>
+                <mi>n</mi>
+            </msqrt>
+            <mo>,</mo>
+            <mi>c</mi>
+            <mo>/</mo>
+            <msqrt>
+                <mi>n</mi>
+            </msqrt>
+            <mo>)</mo>
+        </mrow>
+        <mspace width="1em" />
+        <mrow>
+            <mo>(</mo>
+            <mi>c</mi>
+            <mo>&isin;</mo>
+            <mi mathvariant="double-struck">R</mi>
+            <mo>)</mo>
+        </mrow>
+    </mrow>
+</math> 로 균일하게 분포할 때, 논문에서는 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mrow>
+        <mi>n</mi>
+    </mrow>
+</math> 이 커질수록 내적이 정규 분포 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mrow>
+        <mi>N</mi>
+        <mrow>
+            <mo>(</mo>
+            <mn>0</mn>
+            <mo>,</mo>
+            <msup>
+                <mi>c</mi>
+                <mn>2</mn>
+            </msup>
+            <mo>/</mo>
+            <mn>6</mn>
+            <mo>)</mo>
+        </mrow>
+    </mrow>
+</math> 에 수렴함을 보였다. 이 정규분포 위의 내적을 다른 사인 함수에 먹이면 모든 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mrow>
+        <mi>c</mi>
+        <mo>&gt;</mo>
+        <msqrt>
+            <mn>6</mn>
+        </msqrt>
+    </mrow>
+</math> 에 대해 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mrow>
+        <mi mathvariant="normal">arcsin</mi>
+    </mrow>
+</math> 분포하게 된다. SIREN의 가중치는 각도 주파수로 해석될 수 있으며, 편향은 위상 오프셋이다. 따라서 네트워크에서 큰 주파수는 큰 가중치에 대해 나타난다. 사인 레이어는 내적의 절대값이 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mrow>
+        <mo>&pi;</mo>
+    </mrow>
+</math> 보다 작은 경우 주파수를 거의 변경하지 않는다. 절대값이 더 커지면 주파수가 증가한다.</p>
+<p>이를 종합해서 논문은 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mrow>
+        <mi>c</mi>
+        <mo>=</mo>
+        <mn>6</mn>
+    </mrow>
+</math> 으로 두고 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mrow>
+        <msub>
+            <mi>w</mi>
+            <mi>i</mi>
+        </msub>
+        <mo>&sim;</mo>
+        <mi>U</mi>
+        <mrow>
+            <mo>(</mo>
+            <mo>-</mo>
+            <msqrt>
+                <mn>6</mn>
+                <mo>/</mo>
+                <mi>n</mi>
+            </msqrt>
+            <mo>,</mo>
+            <msqrt>
+                <mn>6</mn>
+                <mo>/</mo>
+                <mi>n</mi>
+            </msqrt>
+            <mo>)</mo>
+        </mrow>
+    </mrow>
+</math> 로 분포시키는 것을 제안한다. 이는 각 사인 활성함수의 입력이 표준편차 1인 정규분포를 유지하도록 한다. <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mrow>
+        <mo>&pi;</mo>
+    </mrow>
+</math> 보다 더 큰 가중치는 거의 없으므로, 사인 네트워크 전체의 주파수는 느리고 강건하게 증가한다. 또한 사인 함수가 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mrow>
+        <mo>[</mo>
+        <mn>-1</mn>
+        <mo>,</mo>
+        <mn>1</mn>
+        <mo>]</mo>
+    </mrow>
+</math> 를 넘어 여러 주기에 걸쳐 있도록 사인 네트워크의 첫 번째 레이어를 가중치 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline">
+    <mrow>
+        <msub>
+            <mo>&omega;</mo>
+            <mn>0</mn>
+        </msub>
+        <mo>=</mo>
+        <mn>30</mn>
+    </mrow>
+</math> 으로 초기화할 것을 제안한다. 이 값은 여러 실험을 통해 도출해낸 값이다. 이 초기화 방식에 의해 논문에서 행한 모든 실험에서 ADAM Optimizer를 사용한 빠르고 강건한 수렴이 나타난다.</p>
