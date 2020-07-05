@@ -1,0 +1,29 @@
+﻿@using Markdig
+
+@if (content == null)
+{
+    <span>Loading...</span>
+}
+else
+{
+    @MarkdownToHtml
+}
+
+@code {
+    private static MarkdownPipeline pipeline =
+        new MarkdownPipelineBuilder()
+        .UseAdvancedExtensions()
+        .UseMathematics()
+        .Build();
+
+    [Parameter]
+    public string content { get; set; }
+
+    private MarkupString MarkdownToHtml
+    {
+        get
+        {
+            return new MarkupString(Markdig.Markdown.ToHtml(content, pipeline));
+        }
+    }
+}

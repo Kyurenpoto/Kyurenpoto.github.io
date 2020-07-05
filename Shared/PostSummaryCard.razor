@@ -1,0 +1,31 @@
+﻿<article id="post-summary-card">
+    <NavLink href="@path">
+        <header>
+            <div id="post-title">@title</div>
+            <div id="post-created-date"></div>
+            <div id="post-modified-date"></div>
+        </header>
+        <div id="card-image"></div>
+        <div id="post-description">@description</div>
+        <footer>
+            <div id="post-tags">@tags</div>
+        </footer>
+    </NavLink>
+</article>
+
+@code{
+    [Parameter]
+    public string path { get; set; }
+    [Parameter]
+    public string title { get; set; }
+    [Parameter]
+    public DateTime dateCreated { get; set; }
+    [Parameter]
+    public DateTime dateModified { get; set; }
+    [Parameter]
+    public string pathCardImage { get; set; }
+    [Parameter]
+    public string description { get; set; }
+    [Parameter]
+    public string tags { get; set; }
+}
