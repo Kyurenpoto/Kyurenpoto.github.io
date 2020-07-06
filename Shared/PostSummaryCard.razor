@@ -1,16 +1,16 @@
 ﻿<article id="post-summary-card">
-    <NavLink href="@path">
-        <header>
-            <div id="post-title">@title</div>
-            <div id="post-created-date"></div>
-            <div id="post-modified-date"></div>
-        </header>
-        <div id="card-image"></div>
-        <div id="post-description">@description</div>
-        <footer>
-            <div id="post-tags">@tags</div>
-        </footer>
-    </NavLink>
+    <header>
+        <div id="post-title">
+            <NavLink href="@path">@title</NavLink>
+        </div>
+        <div id="post-created-date"></div>
+        <div id="post-modified-date"></div>
+    </header>
+    <div id="card-image"></div>
+    <div id="post-description">@description</div>
+    <footer>
+        <div id="post-tags">@tags</div>
+    </footer>
 </article>
 
 @code{
