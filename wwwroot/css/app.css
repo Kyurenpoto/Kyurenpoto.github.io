@@ -158,6 +158,10 @@ main header.top-row a:first-child {
     #post-list > #post-summary-card {
         border: 2px solid rgb(99, 0, 165);
         padding: 10px;
+        min-width: 600;
+        max-width: 800;
+        min-height: 300;
+        max-height: 500;
     }
 
 @media (max-width: 767.98px) {
