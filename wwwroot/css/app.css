@@ -147,12 +147,18 @@ main header.top-row a:first-child {
     top: 0.5rem;
 }
 
-#post-list > #post-summary-card {
-    border: 2px solid rgb(99, 0, 165);
-    padding: 10px;
-    max-width: 500px;
-    max-height: 300px;
+#post-list {
+    display: grid;
+    border: 2px solid rgb(0, 108, 196);
+    grid-template-columns: repeat(auto-fill, minmax(300, 500));
+    grid-template-rows: repeat(auto-fill, minmax(600, 800));
+    gap: 20px;
 }
+
+    #post-list > #post-summary-card {
+        border: 2px solid rgb(99, 0, 165);
+        padding: 10px;
+    }
 
 @media (max-width: 767.98px) {
     main header.top-row:not(.auth) {
