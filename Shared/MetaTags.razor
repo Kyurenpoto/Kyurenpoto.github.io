@@ -11,11 +11,6 @@
 <Meta Property="og:url" Content="@PageUrl" />
 <Meta Property="og:title" Content="@PageTitle" />
 <Meta Property="og:description" Content="@description" />
-<!--StyleSheet-->
-@if (!(pathCSS is null) && !pathCSS.Equals(""))
-{
-    <Link Rel="stylesheet" Href="@pathCSS" />
-}
 
 @code {
     private static string root = "https://Kyurenpoto.github.io/blog";
@@ -27,8 +22,6 @@
     public string title { get; set; }
     [Parameter]
     public string description { get; set; }
-    [Parameter]
-    public string pathCSS { get; set; }
 
     private string PageTitle { get { return title + baseTitle; } }
     private string PageUrl { get { return root + route; } }

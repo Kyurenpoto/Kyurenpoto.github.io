@@ -1,0 +1,41 @@
+﻿#post-summary-card {
+    border: 2px solid rgb(99, 0, 165);
+    padding: 10px;
+}
+
+    #post-summary-card > header {
+        height: 80px;
+        display: grid;
+        grid-template-columns: 10fr 1fr 1fr;
+        gap: 10px;
+    }
+
+        #post-summary-card > header > #post-title {
+            grid-column: 1;
+        }
+
+        #post-summary-card > header > #post-created-date {
+            grid-column: 2;
+        }
+
+        #post-summary-card > header > #post-modified-date {
+            grid-column: 3;
+        }
+
+    #post-summary-card > #card-contents {
+        display: grid;
+        grid-template-columns: 3fr 9fr;
+        gap: 10px;
+    }
+
+        #post-summary-card > #card-contents > #card-image {
+            grid-column: 1;
+        }
+
+        #post-summary-card > #card-contents > #post-description {
+            grid-column: 2;
+        }
+    
+    #post-summary-card > footer {
+        height: 40;
+    }
