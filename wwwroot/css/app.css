@@ -106,13 +106,6 @@ a, .btn-link {
     pointer-events: none;
 }
 
-.max-screen {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 100%;
-}
-
 app {
     position: relative;
     display: flex;
@@ -124,45 +117,66 @@ main {
 }
 
 header.top-row {
-    height: 3.5rem;
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: sticky;
     top: 0;
     font-family: 'MaplestoryOTFBold';
+    font-size: 2em;
 }
 
     header.top-row > a, header.top-row > .btn-link {
         color: #f7f7f7;
+        background-color: transparent;
+        text-decoration: none !important;
+    }
+
+.sidebar-toggler {
+    color: #f7f7f7;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    left: 32px;
+}
+
+    .sidebar-toggler:focus {
+        outline: 0;
     }
 
 .sidebar {
-    display: flex;
-    flex-direction: column;
+    height: 100vh;
+    padding: 0 10% 0 10%;
+    top: 0;
     order: 2;
+    font-size: 1.1rem;
 }
 
-    .sidebar > div {
-        flex: 1;
-    }
-
-    .sidebar .navbar-brand {
-        font-size: 1.1rem;
-    }
-
-    .sidebar .oi {
+    .sidebar .oi, .sidebar .fas {
         width: 2rem;
         font-size: 1.1rem;
         vertical-align: text-top;
         top: -2px;
+        margin: 0 8px 0 8px;
     }
 
-    .sidebar .fas {
-        width: 2rem;
-        font-size: 1.1rem;
-        vertical-align: text-top;
-        top: -2px;
+    .sidebar ul li {
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .sidebar ul {
+        padding: 0;
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+    }
+
+    .sidebar li {
+        list-style: none;
     }
 
     .sidebar .nav-item {
@@ -183,6 +197,8 @@ header.top-row {
             color: #d7d7d7;
             border-radius: 4px;
             height: 3rem;
+            padding: 16px 16px 16px 8px;
+            text-decoration: none !important;
             display: flex;
             align-items: center;
             line-height: 3rem;
@@ -198,17 +214,9 @@ header.top-row {
                 color: white;
             }
 
-.content {
-    padding-top: 1.1rem;
-}
-
 .content > h1 {
     margin: 16px 16px 32px 16px;
     text-align: center;
-}
-
-.navbar-toggler {
-    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .valid.modified:not([type=checkbox]) {
@@ -256,14 +264,15 @@ header.top-row {
     }
 
     .sidebar {
-        width: 25%;
-        height: 100vh;
-        position: sticky;
-        top: 0;
+        width: 240px;
+        padding: 0 1% 0 1%;
         order: 1;
+        position: fixed;
     }
 
     main {
+        width: calc(100% - 240px);
+        margin-left: 240px;
         order: 2;
     }
 
@@ -277,10 +286,10 @@ header.top-row {
 
     main > div {
         padding-left: 2rem !important;
-        padding-right: 1.5rem !important;
+        padding-right: 2rem !important;
     }
 
-    .navbar-toggler {
+    .sidebar-toggler {
         display: none;
     }
 
