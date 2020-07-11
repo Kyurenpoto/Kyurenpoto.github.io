@@ -1,5 +1,7 @@
 <Link Rel="stylesheet" Href="css/post_collection.css" />
 
+<h1>Machine Learning</h1>
+
 <div class="collection-wrapper">
     <section class="post-collection">
         @foreach (var item in Cards.Where(x => Collections[collectionName].Contains(x.Key)).Select(x => x.Value))
@@ -36,6 +38,9 @@
 @code {
     [Parameter]
     public string collectionName { get; set; }
+
+    [Parameter]
+    public string title { get; set; }
 
     public static Dictionary<string, List<int>> Collections = new Dictionary<string, List<int>>
     {
