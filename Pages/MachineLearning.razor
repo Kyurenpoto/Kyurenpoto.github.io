@@ -1,9 +1,11 @@
-﻿@page "/machinelearning"
+﻿@page "/machine-learning"
 
-<MetaTags title="머신 러닝 - " description="머신 러닝 관련 포스트 리스트" route="/machinelearning" />
+<MetaTags title="머신 러닝 - " description="분류: 머신 러닝" route="/machine-learning" />
 
 <h1>Machine Learning</h1>
 
-<section id="post-list">
+<PostCollection collectionName="machine-learning"/>
+
+<!--<section id="post-list">
     <PostSummaryCard path="post/1" title="논문 리뷰: Implicit Neural Representations with Periodic Activation Functions" dateCreated="@(new DateTime(2020, 07, 05, 02, 12, 22))" dateModified="@(new DateTime(2020, 07, 05, 02, 12, 22))" pathCardImage="assets/images/sine-curve.png" description="기존의 ReLU 기반 MLP는 입력 신호의 고차 미분을 나타낼 수 없기 때문에 미세 표현 능력이 부족하다. 이를 개선하기 위해 주기 함수를 활성 함수로 사용해서 고차 미분 정보를 회손하지 않도록 했다. 다양한 문제에서 기존 모델과 비교했을 때 더 나은 표현을 보임을 실험을 통해 증명했다." tags="deep learning;activation"/>
-</section>
+</section>-->
