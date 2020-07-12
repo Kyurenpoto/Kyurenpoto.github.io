@@ -13,7 +13,7 @@
 }
 
 .card-wrapper {
-    margin: 0px 0px 32px 0px;
+    margin-bottom: 32px;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr;
@@ -24,23 +24,29 @@
     }
 
 .post-summary-card {
-    padding: 8px;
+    padding: 16px;
     display: grid;
-    grid-template-rows: 2fr auto 1fr;
+    grid-template-rows: 1fr auto 1fr;
     gap: 8px;
 }
 
-.post-summary-card > header > div:not(.card-title) {
+.card-title > a {
+    color: #d7d7d7;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.card-created, .card-modified {
     display: none;
 }
 
-.post-summary-card > .card-contents {
+.card-contents {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 8px;
 }
 
-.post-summary-card > .card-contents > .card-image {
+.card-image {
     grid-column: 1;
     position: relative;
     width: 100%;
@@ -48,23 +54,31 @@
     padding-bottom: 100%;
 }
 
-.post-summary-card > .card-contents > .card-image > img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-}
+    .card-image > img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+    }
 
-.post-summary-card > .card-contents > .card-description {
+.card-description {
     grid-column: 2;
 }
-    
-.post-summary-card > footer {
-    display: grid;
+
+.card-tags {
+    position: absolute;
+    bottom: 8px;
+    font-size: 0.8rem;
+    font-style: italic;
 }
+
+    .card-tags > a {
+        color: #d7d7d7;
+        text-decoration: none;
+    }
 
 @media (min-width: 768px) {   
     .collection-wrapper {
@@ -76,8 +90,14 @@
     }
     
     .card-wrapper {
-        width: 50%;
+        width: 100%;
         display: grid;
         grid-template-columns: 3fr 1fr;
+    }
+}
+
+@media (min-width: 1368px) {       
+    .card-wrapper {
+        width: 50%;
     }
 }

@@ -4,7 +4,7 @@
 
 <div class="collection-wrapper">
     <section class="post-collection">
-        @foreach (var item in Cards.Where(x => Collections[collectionName].Contains(x.Key)).Select(x => x.Value))
+        @foreach (var item in Cards.Where(x => x.Category.Equals(collectionName)))
         {
             <div class="card-wrapper">
                 <div class="overlay-wrap">
@@ -13,10 +13,8 @@
                             <div class="card-title">
                                 <NavLink href="@item.Path">@item.Title</NavLink>
                             </div>
-                            <div>
-                                <div class="card-modified">@item.DateModified</div>
-                                <div class="card-created">@item.DateCreated</div>
-                            </div>
+                            <div class="card-modified">@item.DateModified</div>
+                            <div class="card-created">@item.DateCreated</div>
                         </header>
                         <div class="card-contents">
                             <div class="card-image">
@@ -25,7 +23,12 @@
                             <div class="card-description">@item.Description</div>
                         </div>
                         <footer>
-                            <div class="card-tags">@item.Tags</div>
+                            <div class="card-tags">
+                                @foreach(var tag in item.Tags.Split(";"))
+                                {
+                                    <NavLink href="">@tag</NavLink>
+                                }
+                            </div>
                         </footer>
                     </article>
                     <div class="overlay-secondary-bg-1" />
@@ -60,26 +63,25 @@
         public string Description { get; set; }
         public string PathCardImage { get; set; }
         public string ImageDescription { get; set; }
+        public string Category { get; set; }
         public string Tags { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
     }
 
-    public Dictionary<int, PostCard> Cards = new Dictionary<int, PostCard>
+    public List<PostCard> Cards = new List<PostCard>
     {
+        new PostCard
         {
-            1,
-            new PostCard
-            {
-                Path = "post/1",
-                Title = "논문 리뷰: Implicit Neural Representations with Periodic Activation Functions",
-                Description = "기존의 ReLU 기반 MLP는 입력 신호의 고차 미분을 나타낼 수 없기 때문에 미세 표현 능력이 부족하다. 이를 개선하기 위해 주기 함수를 활성 함수로 사용해서 고차 미분 정보를 회손하지 않도록 했다. 다양한 문제에서 기존 모델과 비교했을 때 더 나은 표현을 보임을 실험을 통해 증명했다.",
-                PathCardImage = "assets/images/sine-curve.png",
-                ImageDescription = "sine curve",
-                Tags = "deep learning;activation function",
-                DateCreated = new DateTime(2020, 07, 05, 02, 12, 22),
-                DateModified = new DateTime(2020, 07, 05, 02, 12, 22)
-            }
+            Path = "post/1",
+            Title = "논문 리뷰: Implicit Neural Representations with Periodic Activation Functions",
+            Description = "기존의 ReLU 기반 MLP는 입력 신호의 고차 미분을 나타낼 수 없기 때문에 미세 표현 능력이 부족하다. 이 논문에서는 주기 함수를 활성 함수로 사용해서 고차 미분 정보를 회손하지 않도록 했다.",
+            PathCardImage = "assets/images/sine-curve.png",
+            ImageDescription = "sine curve",
+            Category = "Machine Learning",
+            Tags = "Neural Network > Activation Function",
+            DateCreated = new DateTime(2020, 07, 05, 02, 12, 22),
+            DateModified = new DateTime(2020, 07, 05, 02, 12, 22)
         },
     };
 }
