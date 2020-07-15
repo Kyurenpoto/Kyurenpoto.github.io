@@ -12,17 +12,28 @@
     <link href="https://cdnjs.cloudflare.com" rel="preconnect" />
     <link href="https://cdn.jsdelivr.net" rel="preconnect" />
     <link href="https://unpkg.com" rel="preconnect" />
-    <!--Preload-->
+    <!--Preload/Prefetch-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" rel="preload" as="style" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="preload" as="style" />
     <link href="https://unpkg.com/@navsnpm/katex-expression/dist/katex-expression/katex-expression.esm.js" rel="modulepreload" />
-    <link href="https://unpkg.com/@navsnpm/katex-expression/dist/katex-expression/katex-expression.js" rel="preload" as="script" />
+    <link href="https://unpkg.com/@navsnpm/katex-expression/dist/katex-expression/katex-expression.js" rel="prefetch" as="script" />
     <!--Favicon-->
     <Link Rel="shortcut icon" Href="favicon.ico" />
     <Link Rel="icon" Href="favicon.ico" />
     <!--CSS-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <app>Loading...</app>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+    
     <!--Script-->
     <script src="_framework/blazor.webassembly.js"></script>
     <script type="module" src="https://unpkg.com/@navsnpm/katex-expression/dist/katex-expression/katex-expression.esm.js"></script>
@@ -58,16 +69,6 @@
         }(window.location))
     </script>
     <!-- End Single Page Apps for GitHub Pages -->
-</head>
-
-<body>
-    <app>Loading...</app>
-
-    <div id="blazor-error-ui">
-        An unhandled error has occurred.
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
-    </div>
 </body>
 
 </html>
