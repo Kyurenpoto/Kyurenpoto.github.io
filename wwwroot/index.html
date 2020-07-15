@@ -8,28 +8,73 @@
     <meta name="description" content="Idle screen">
     <base href="/blog/" />
     <!--Preconnect-->
-    <link href="https://themes.googleusercontent.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link href="https://cdnjs.cloudflare.com" rel="preconnect" />
     <link href="https://cdn.jsdelivr.net" rel="preconnect" />
     <link href="https://unpkg.com" rel="preconnect" />
     <!--Preload/Prefetch-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" rel="preload" as="style" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="preload" as="style" />
+    <link href="https://fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="preload" as="style" />
     <link href="https://unpkg.com/@navsnpm/katex-expression/dist/katex-expression/katex-expression.esm.js" rel="modulepreload" />
     <link href="https://unpkg.com/@navsnpm/katex-expression/dist/katex-expression/katex-expression.js" rel="prefetch" as="script" />
-    <link href="https://themes.googleusercontent.com/static/fonts/earlyaccess/nanumgothic/v3/NanumGothic-Regular.woff2" rel="prefetch" as="font" type="font/woff2" crossorigin="anonymous" />
     <link href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff" rel="preload" as="font" type="font/woff2" crossorigin="anonymous" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/fonts/open-iconic.woff" rel="preload" as="font" type="font/woff2" crossorigin="anonymous" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/webfonts/fa-solid-900.woff2" rel="preload" as="font" type="font/woff2" crossorigin="anonymous" />
-    <link href="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/fonts/KaTeX_Main-Regular.woff2" rel="prefetch" as="font" type="font/woff2" crossorigin="anonymous" />
-    <link href="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/fonts/KaTeX_Math-Italic.woff2" rel="prefetch" as="font" type="font/woff2" crossorigin="anonymous" />
-    <link href="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/fonts/KaTeX_AMS-Regular.woff2" rel="prefetch" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link href="_framework/blazor.webassembly.js" rel="preload" as="script" />
     <!--Favicon-->
     <Link Rel="shortcut icon" Href="favicon.ico" />
     <Link Rel="icon" Href="favicon.ico" />
     <!--CSS-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="stylesheet" />
+    <style>
+        * {
+            box-sizing: border-box;
+            scrollbar-width: none;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        html, body {
+            font-family: 'Nanum Gothic', 'Malgun Gothic', sans-serif;
+        }
+
+        body {
+            background-color: #121212;
+            color: #d7d7d7;
+        }
+
+        a, .btn-link {
+            color: #3f84d3;
+        }
+
+        .btn-primary {
+            color: #fff;
+            background-color: #1b6ec2;
+            border-color: #1861ac;
+        }
+        
+        #blazor-error-ui {
+            background: lightyellow;
+            bottom: 0;
+            box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+            display: none;
+            left: 0;
+            padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        #blazor-error-ui .dismiss {
+            pointer-events: none;
+            position: absolute;
+            right: 0.75rem;
+            top: 0.5rem;
+        }
+    </style>
 </head>
 
 <body>
@@ -42,11 +87,8 @@
     </div>
 
     <!--Script-->
-    <script src="_framework/blazor.webassembly.js"></script>
-    <script type="module" src="https://unpkg.com/@navsnpm/katex-expression/dist/katex-expression/katex-expression.esm.js"></script>
-    <script nomodule="" src="https://unpkg.com/@navsnpm/katex-expression/dist/katex-expression/katex-expression.js"></script>
     <!-- Start Single Page Apps for GitHub Pages -->
-    <script type="text/javascript">
+    <script async type="text/javascript">
         // Single Page Apps for GitHub Pages
         // https://github.com/rafrex/spa-github-pages
         // Copyright (c) 2016 Rafael Pedicini, licensed under the MIT License
@@ -76,6 +118,9 @@
         }(window.location))
     </script>
     <!-- End Single Page Apps for GitHub Pages -->
+    <script defer src="_framework/blazor.webassembly.js"></script>
+    <script defer type="module" src="https://unpkg.com/@navsnpm/katex-expression/dist/katex-expression/katex-expression.esm.js"></script>
+    <script defer nomodule="" src="https://unpkg.com/@navsnpm/katex-expression/dist/katex-expression/katex-expression.js"></script>
 </body>
 
 </html>
