@@ -16,11 +16,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" rel="preload" as="style" crossorigin="anonymous" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="preload" as="style" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="preload" as="style" />
+    <link href="styles/idle.css" rel="preload" as="style" />
     <link href="https://unpkg.com/@navsnpm/katex-expression/dist/katex-expression/katex-expression.esm.js" rel="modulepreload" />
-    <link href="https://unpkg.com/@navsnpm/katex-expression/dist/katex-expression/katex-expression.js" rel="prefetch" as="script" />
-    <link href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff" rel="preload" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff" rel="preload" as="font" type="font/woff" crossorigin="anonymous" />
     <link href="_framework/blazor.webassembly.js" rel="preload" as="script" />
-    <link href="brotli.decode.min.js" rel="preload" as="script" />
+    <link href="scripts/brotli.decode.min.js" rel="preload" as="script" />
     <!--Favicon-->
     <Link Rel="shortcut icon" Href="favicon.ico" />
     <Link Rel="icon" Href="favicon.ico" />
@@ -28,54 +28,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="stylesheet" />
-    <style>
-        * {
-            box-sizing: border-box;
-            scrollbar-width: none;
-        }
-
-        ::-webkit-scrollbar {
-            display: none;
-        }
-
-        html, body {
-            font-family: 'Nanum Gothic', 'Malgun Gothic', sans-serif;
-        }
-
-        body {
-            background-color: #121212;
-            color: #d7d7d7;
-        }
-
-        a, .btn-link {
-            color: #3f84d3;
-        }
-
-        .btn-primary {
-            color: #fff;
-            background-color: #1b6ec2;
-            border-color: #1861ac;
-        }
-        
-        #blazor-error-ui {
-            background: lightyellow;
-            bottom: 0;
-            box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
-            display: none;
-            left: 0;
-            padding: 0.6rem 1.25rem 0.7rem 1.25rem;
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-        }
-
-        #blazor-error-ui .dismiss {
-            pointer-events: none;
-            position: absolute;
-            right: 0.75rem;
-            top: 0.5rem;
-        }
-    </style>
+    <link href="styles/idle.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -88,62 +41,11 @@
     </div>
 
     <!--Script-->
-    <!-- Start Single Page Apps for GitHub Pages -->
-    <script type="text/javascript">
-        // Single Page Apps for GitHub Pages
-        // https://github.com/rafrex/spa-github-pages
-        // Copyright (c) 2016 Rafael Pedicini, licensed under the MIT License
-        // ----------------------------------------------------------------------
-        // This script checks to see if a redirect is present in the query string
-        // and converts it back into the correct url and adds it to the
-        // browser's history using window.history.replaceState(...),
-        // which won't cause the browser to attempt to load the new url.
-        // When the single page app is loaded further down in this file,
-        // the correct url will be waiting in the browser's history for
-        // the single page app to route accordingly.
-        (function (l) {
-            if (l.search) {
-                var q = {};
-                l.search.slice(1).split('&').forEach(function (v) {
-                    var a = v.split('=');
-                    q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
-                });
-                if (q.p !== undefined) {
-                    window.history.replaceState(null, null,
-                        l.pathname.slice(0, -1) + (q.p || '') +
-                        (q.q ? ('?' + q.q) : '') +
-                        l.hash
-                    );
-                }
-            }
-        }(window.location))
-    </script>
-    <!-- End Single Page Apps for GitHub Pages -->
-    <script src="brotli.decode.min.js"></script>
+    <script src="scripts/redirect-history.min.js"></script>
+    <script src="scripts/brotli.decode.min.js"></script>
     <script src="_framework/blazor.webassembly.js" autostart="false"></script>
-    <script type="text/javascript">
-        Blazor.start({
-            loadBootResource: function (type, name, defaultUri, integrity) {
-                if (type !== 'dotnetjs' && location.hostname !== 'localhost') {
-                    return (async function () {
-                        const response = await fetch(defaultUri + '.br', { cache: 'no-cache' });
-                        if (!response.ok) {
-                            throw new Error(response.statusText);
-                        }
-                        const originalResponseBuffer = await response.arrayBuffer();
-                        const originalResponseArray = new Int8Array(originalResponseBuffer);
-                        const decompressedResponseArray = BrotliDecode(originalResponseArray);
-                        const contentType = type === 
-                            'dotnetwasm' ? 'application/wasm' : 'application/octet-stream';
-                        return new Response(decompressedResponseArray, 
-                            { headers: { 'content-type': contentType } });
-                    })();
-                }
-            }
-        });
-    </script>
+    <script src="scripts/blazor-starter.min.js"></script>
     <script defer type="module" src="https://unpkg.com/@navsnpm/katex-expression/dist/katex-expression/katex-expression.esm.js"></script>
-    <script defer nomodule="" src="https://unpkg.com/@navsnpm/katex-expression/dist/katex-expression/katex-expression.js"></script>
 </body>
 
 </html>
