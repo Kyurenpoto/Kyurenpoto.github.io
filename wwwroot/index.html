@@ -13,19 +13,20 @@
     <link href="https://cdn.jsdelivr.net" rel="preconnect" />
     <link href="https://unpkg.com" rel="preconnect" />
     <!--Preload/Prefetch-->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" rel="preload" as="style" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="preload" as="style" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" rel="preload" as="style" crossorigin="anonymous" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="preload" as="style" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="preload" as="style" />
     <link href="https://unpkg.com/@navsnpm/katex-expression/dist/katex-expression/katex-expression.esm.js" rel="modulepreload" />
     <link href="https://unpkg.com/@navsnpm/katex-expression/dist/katex-expression/katex-expression.js" rel="prefetch" as="script" />
     <link href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff" rel="preload" as="font" type="font/woff2" crossorigin="anonymous" />
     <link href="_framework/blazor.webassembly.js" rel="preload" as="script" />
+    <link href="brotli.decode.min.js" rel="preload" as="script" />
     <!--Favicon-->
     <Link Rel="shortcut icon" Href="favicon.ico" />
     <Link Rel="icon" Href="favicon.ico" />
     <!--CSS-->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="stylesheet" />
     <style>
         * {
@@ -88,7 +89,7 @@
 
     <!--Script-->
     <!-- Start Single Page Apps for GitHub Pages -->
-    <script async type="text/javascript">
+    <script type="text/javascript">
         // Single Page Apps for GitHub Pages
         // https://github.com/rafrex/spa-github-pages
         // Copyright (c) 2016 Rafael Pedicini, licensed under the MIT License
@@ -118,7 +119,29 @@
         }(window.location))
     </script>
     <!-- End Single Page Apps for GitHub Pages -->
-    <script defer src="_framework/blazor.webassembly.js"></script>
+    <script src="brotli.decode.min.js"></script>
+    <script src="_framework/blazor.webassembly.js" autostart="false"></script>
+    <script type="text/javascript">
+        Blazor.start({
+            loadBootResource: function (type, name, defaultUri, integrity) {
+                if (type !== 'dotnetjs' && location.hostname !== 'localhost') {
+                    return (async function () {
+                        const response = await fetch(defaultUri + '.br', { cache: 'no-cache' });
+                        if (!response.ok) {
+                            throw new Error(response.statusText);
+                        }
+                        const originalResponseBuffer = await response.arrayBuffer();
+                        const originalResponseArray = new Int8Array(originalResponseBuffer);
+                        const decompressedResponseArray = BrotliDecode(originalResponseArray);
+                        const contentType = type === 
+                            'dotnetwasm' ? 'application/wasm' : 'application/octet-stream';
+                        return new Response(decompressedResponseArray, 
+                            { headers: { 'content-type': contentType } });
+                    })();
+                }
+            }
+        });
+    </script>
     <script defer type="module" src="https://unpkg.com/@navsnpm/katex-expression/dist/katex-expression/katex-expression.esm.js"></script>
     <script defer nomodule="" src="https://unpkg.com/@navsnpm/katex-expression/dist/katex-expression/katex-expression.js"></script>
 </body>
