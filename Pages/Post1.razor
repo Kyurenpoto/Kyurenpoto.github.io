@@ -13,16 +13,12 @@
 </ol>
 <p>이 글에서는 논문의 요점을 간략하게 요약하고, 이에 관련된 여러 테마에 대한 몇 가지 고찰을 내 방식대로 진행한다. 자세한 수식 유도 및 증명은 논문을 참고하면 된다.</p>
 
-<hr />
-
 <h2>SIREN의 Activation Function 및 초기화</h2>
 
 <img src="assets/images/sine-curve.png" alt="sine curve">
 
 <p>SIREN에서 사용한 Activation Function은 <katex-expression expression='\sin' katex-options='{ "displayMode": false , "throwOnError": true }' /> 함수이다. 단순히 Activation Function에 <katex-expression expression='\sin' katex-options='{ "displayMode": false , "throwOnError": true }' /> 함수를 사용한 것이다.</p>
 <p>논문에서는 SIREN의 모든 가중치의 각 성분이 <katex-expression expression='w_i\text{\textasciitilde}U\left(-6/\sqrt{n},6/\sqrt{n}\right)\quad\left(c\in\mathbb{R}\right)' katex-options='{ "displayMode": false , "throwOnError": true }' /> 로 분포하도록 초기화하도록 제안한다.</p>
-
-<hr />
 
 <h2>고찰</h2>
 

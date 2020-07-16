@@ -1,0 +1,283 @@
+@font-face {
+    font-family: 'MaplestoryOTFBold';
+    font-weight: normal;
+    font-style: normal;
+    font-display: fallback;
+    src: local('MaplestoryOTFBold'),
+        url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff') format('woff');
+}
+
+.overlay-wrap {
+    position: relative;
+}
+
+.overlay-1 {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background-color: rgba(255,255,255,0.07);
+    pointer-events: none;
+}
+
+.overlay-2 {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background-color: rgba(255,255,255,0.11);
+    pointer-events: none;
+}
+
+.overlay-3 {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background-color: rgba(255,255,255,0.14);
+    pointer-events: none;
+}
+
+.overlay-4 {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background-color: rgba(255,255,255,0.16);
+    pointer-events: none;
+}
+
+.overlay-primary-1 {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background-color: rgba(69, 190, 195, 0.15);
+    pointer-events: none;
+}
+
+.overlay-secondary-bg-1 {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-color: rgba(89, 57, 205, 0.09);
+    pointer-events: none;
+}
+
+app {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    order: 1;
+}
+
+header.top-row {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    font-family: 'MaplestoryOTFBold';
+    font-size: 2em;
+    background-color: #121212;
+    z-index: 3;
+}
+
+    header.top-row > a, header.top-row > .btn-link {
+        color: #d7d7d7;
+        background-color: transparent;
+        text-decoration: none !important;
+    }
+
+    header.top-row > a {
+        position: absolute;
+        right: 32px;
+    }
+
+.sidebar-toggler {
+    color: #d7d7d7;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    left: 32px;
+}
+
+    .sidebar-toggler:focus {
+        outline: 0;
+    }
+
+.sidebar {
+    height: 100vh;
+    padding-right: 10%;
+    padding-left: 10%;
+    top: 0;
+    order: 2;
+    font-size: 1.1rem;
+}
+
+    .sidebar .oi, .sidebar .fas {
+        width: 2rem;
+        font-size: 1.1rem;
+        vertical-align: text-top;
+        top: -2px;
+        margin-right: 8px;
+        margin-left: 8px;
+    }
+
+    .sidebar ul li {
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .sidebar ul {
+        padding: 0;
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+    }
+
+    .sidebar li {
+        list-style: none;
+    }
+
+    .sidebar .nav-item {
+        font-size: 0.9rem;
+        padding-bottom: 0.5rem;
+        white-space: nowrap;
+    }
+
+        .sidebar .nav-item:first-of-type {
+            padding-top: 1rem;
+        }
+
+        .sidebar .nav-item:last-of-type {
+            padding-bottom: 1rem;
+        }
+
+        .sidebar .nav-item a {
+            color: #d7d7d7;
+            font-weight: 700;
+            border-radius: 4px;
+            height: 3rem;
+            padding: 16px 16px 16px 8px;
+            text-decoration: none !important;
+            display: flex;
+            align-items: center;
+            line-height: 3rem;
+        }
+
+            .sidebar .nav-item a.active {
+                background-color: rgba(255,255,255,0.25);
+                color: white;
+            }
+
+            .sidebar .nav-item a:hover {
+                background-color: rgba(255,255,255,0.1);
+                color: white;
+            }
+
+.content {
+    margin-top: 80px;
+}
+
+    .content > h1 {
+        margin: 16px 16px 32px 16px;
+        text-align: center;
+        font-weight: 800;
+    }
+
+    .content > h2, h3 {
+        font-weight: 700;
+    }
+
+    .content > h2 {
+        margin-top: 32px;
+    }
+
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+.invalid {
+    outline: 1px solid red;
+}
+
+.validation-message {
+    color: red;
+}
+
+p.katex {
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    app {
+        flex-direction: row;
+    }
+
+    header.top-row > a {
+        position: static;
+        right: auto;
+    }
+
+    .sidebar {
+        width: 240px;
+        padding-right: 1%;
+        padding-left: 1%;
+        order: 1;
+        position: fixed;
+    }
+
+    main {
+        width: calc(100% - 240px);
+        margin-left: 240px;
+        order: 2;
+    }
+
+    main > header {
+        justify-content: center;
+    }
+
+    main > .collapse.content {
+        display: block;
+    }
+
+    main > div {
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+    }
+
+    .sidebar-toggler {
+        display: none;
+    }
+
+    .sidebar .collapse {
+        display: block;
+    }
+}
