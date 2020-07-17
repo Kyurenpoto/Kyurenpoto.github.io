@@ -206,17 +206,17 @@ header.top-row {
     margin-top: 80px;
 }
 
-    .content > h1 {
+    .content h1 {
         margin: 16px 16px 32px 16px;
         text-align: center;
         font-weight: 800;
     }
 
-    .content > h2, h3 {
+    .content h2, h3 {
         font-weight: 700;
     }
 
-    .content > h2 {
+    .content h2 {
         margin-top: 32px;
     }
 
@@ -234,6 +234,10 @@ header.top-row {
 
 p.katex {
     text-align: center;
+}
+
+.utterances {
+    display: none;
 }
 
 @media (min-width: 768px) {
