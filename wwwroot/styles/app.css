@@ -83,6 +83,10 @@
     pointer-events: none;
 }
 
+.collapse {
+    display: none;
+}
+
 app {
     position: relative;
     display: flex;
@@ -134,6 +138,7 @@ header.top-row {
     height: 100vh;
     padding-right: 10%;
     padding-left: 10%;
+    margin-top: 80px;
     top: 0;
     order: 2;
     font-size: 1.1rem;
@@ -203,7 +208,8 @@ header.top-row {
             }
 
 .content {
-    margin-top: 80px;
+    margin-top: 112px;
+    word-break: keep-all;
 }
 
     .content h1 {
@@ -277,7 +283,11 @@ p.katex {
         display: none;
     }
 
-    .sidebar .collapse {
+    .sidebar {
+        margin-top: 0;
+    }
+
+    .collapse.sidebar{
         display: block;
     }
 }

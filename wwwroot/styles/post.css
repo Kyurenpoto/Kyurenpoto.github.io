@@ -1,3 +1,32 @@
 .utterances {
     display: block;
+    width: 100vw;
+}
+
+.utterances-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.img-wrap {
+    display: flex;
+    justify-content: center;
+    margin: 32px;
+}
+
+.img-wrap > .img-inner-wrap {
+    max-width: 500px;
+    width: 50%;
+}
+
+.img-wrap > .img-inner-wrap > img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+}
+
+@media (min-width: 768px) {
+    .utterances-wrap {
+        margin-left: 240px;
+    }
 }

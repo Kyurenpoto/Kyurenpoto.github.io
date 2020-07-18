@@ -17,7 +17,11 @@
 
 <h2>SIREN의 Activation Function 및 초기화</h2>
 
-<img src="assets/images/sine-curve.png" alt="sine curve">
+<div class="img-wrap">
+    <div class="img-inner-wrap">
+        <img src="assets/images/sine-curve.png" alt="sine curve">
+    </div>
+</div>
 
 <p>SIREN에서 사용한 Activation Function은 <katex-expression expression='\sin' katex-options='{ "displayMode": false , "throwOnError": true }' /> 함수이다. 단순히 Activation Function에 <katex-expression expression='\sin' katex-options='{ "displayMode": false , "throwOnError": true }' /> 함수를 사용한 것이다.</p>
 <p>각 레이어에 대해 Gradient를 계산하면 선형 함수와 비선형 함수를 번갈아가며 합성하는 꼴이 나온다. <katex-expression expression='\sin' katex-options='{ "displayMode": false , "throwOnError": true }' /> 함수는 미분하게 되면 다시 <katex-expression expression='\sin' katex-options='{ "displayMode": false , "throwOnError": true }' /> 함수가 되고, 선형 함수는 미분하면 Transpose한 꼴의 행렬이 된다. 따라서 각 레이어에 대한 Gradient는 또 다른 SIREN이 된다. 입력을 <katex-expression expression='\left(-1,1\right)' katex-options='{ "displayMode": false , "throwOnError": true }' /> 범위의 균등 분포로 가정할 때 SIREN의 출력은 표준 정규 분포를 따르므로, SIREN의 Gradient는 폭발/소멸에서 안전하다고 볼 수 있다.</p>
