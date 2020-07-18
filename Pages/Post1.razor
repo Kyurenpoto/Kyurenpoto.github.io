@@ -26,9 +26,8 @@
 
 <h3>Weight/Bias 정규화</h3>
 
-<p><katex-expression expression='\sin' katex-options='{ "displayMode": false , "throwOnError": true }' /> 을 사용하면 Gradient가 증발하거나 폭발하는 문제가 거의 없다. 입력과 Weight의 내적의 각 원소에 대한 <katex-expression expression='\sin' katex-options='{ "displayMode": false , "throwOnError": true }' /> 값이 <katex-expression expression='\left(-\pi,\pi\right)' katex-options='{ "displayMode": false , "throwOnError": true }' /> 를 거의 벗어나지 않는 표준 정규 분포를 이루기 때문이다. 저 범위를 벗어나는 경우 Gradient를 조작해서 저 범위 안쪽으로 끌고 오면 그만이다.</p>
-<p>하지만 이렇게 해도 Activation Function을 사인 함수로 통일할 수는 없다. 입력값의 범위가 알려진 경우 첫 레이어에서 정규화를 사용하면 되지만, 정규화가 불가능한 경우 주기성과 선형성을 가지지 않으면서 연속인, 비선형 일대일 대응 함수가 필요하다. 대표적으로 Sigmoid와 <katex-expression expression='\tanh' katex-options='{ "displayMode": false , "throwOnError": true }' /> 가 있고, 두 함수의 출력은 균등 분포이므로 정규화가 가능하다.</p>
-<p>그러므로 앞 부분에는 Sigmoid 또는 <katex-expression expression='\tanh' katex-options='{ "displayMode": false , "throwOnError": true }' /> 를 적용하고 그 뒤부터는 <katex-expression expression='\sin' katex-options='{ "displayMode": false , "throwOnError": true }' /> 을 사용하면 대부분의 문제가 해결될 것이다.</p>
+<p><katex-expression expression='\sin' katex-options='{ "displayMode": false , "throwOnError": true }' /> 을 사용하면 Gradient가 증발하거나 폭발하는 문제가 거의 없다. 입력과 Weight의 내적의 각 원소에 대한 <katex-expression expression='\sin' katex-options='{ "displayMode": false , "throwOnError": true }' /> 값이 <katex-expression expression='\left(-\pi,\pi\right)' katex-options='{ "displayMode": false , "throwOnError": true }' /> 를 거의 벗어나지 않는 표준 정규 분포를 이루기 때문이다. 저 범위를 벗어나는 경우 Bias를 조작해서 저 범위 안쪽으로 끌고 오면 그만이다.</p>
+<p>어차피 두 번째 레이어부터는 Graident 문제가 없으므로, 첫 레이어에서 발생하는 문제만 고려하면 된다. 첫 레이어에 들어오는 입력, 즉 모델의 입력은 그 성질에 따라 값의 범위와 분포가 제각각이다. 이를 강제로 맞춰주기 위해서는 Weight Standardization을 사용하면 된다.</p>
 
 <h3>Skip Connection의 대체</h3>
 

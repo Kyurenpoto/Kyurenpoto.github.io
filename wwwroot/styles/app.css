@@ -236,10 +236,6 @@ p.katex {
     text-align: center;
 }
 
-.utterances {
-    display: none;
-}
-
 @media (min-width: 768px) {
     app {
         flex-direction: row;
