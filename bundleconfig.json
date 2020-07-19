@@ -21,7 +21,7 @@
             "wwwroot/scripts/blazor-starter.min.js"
         ],
         "minify": {
-            "enabled": false
+            "enabled": true
         },
         "sourceMap": false
     }
