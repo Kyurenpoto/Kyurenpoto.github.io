@@ -1,0 +1,26 @@
+body {
+    touch-action: none;
+}
+
+.img-wrap {
+    display: flex;
+    justify-content: center;
+    height: calc(100vh - 192px);
+}
+
+.img-inner-wrap {
+    position: relative;
+    width: 100%;
+}
+
+img {
+    position: absolute;
+    max-width: 100%;
+    height: auto;
+}
+
+@media (min-width: 768px) {
+    .img-inner-wrap {
+        max-width: calc(100% - 192px);
+    }
+}

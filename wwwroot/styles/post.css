@@ -6,6 +6,7 @@
 .utterances-wrap {
     display: flex;
     justify-content: center;
+    margin: 24px auto;
 }
 
 .img-wrap {
@@ -21,12 +22,12 @@
 
 .img-wrap > .img-inner-wrap > img {
     max-width: 100%;
-    width: 100%;
     height: auto;
 }
 
 @media (min-width: 768px) {
     .utterances-wrap {
         margin-left: 240px;
+        width: calc(100vw - 240px);
     }
 }
