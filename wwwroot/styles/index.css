@@ -5,22 +5,11 @@ body {
 .index-img-wrap {
     display: flex;
     justify-content: center;
+    width: 100%;
     height: calc(100vh - 192px);
 }
 
-.index-img-inner-wrap {
-    position: relative;
-    width: 100%;
-}
-
-.index-img-inner-wrap > img {
-    position: absolute;
+.index-img-wrap > img {
     max-width: 100%;
-    height: auto;
-}
-
-@media (min-width: 768px) {
-    .index-img-inner-wrap {
-        max-width: calc(100% - 192px);
-    }
+    object-fit: contain;
 }

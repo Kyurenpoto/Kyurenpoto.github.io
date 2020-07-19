@@ -20,15 +20,15 @@
     <div class="overlay-1" />
 </nav>
 
-<main>
-    <header class="top-row overlay-wrap">
-        <a href="">어떤 프로그래머의 비망록</a>
-        <button class="sidebar-toggler" aria-label="sidebar-toggler" @onclick="ToggleNavMenu">
-            <span class="fas fa-bars" area-hidden="true" />
-        </button>
-        <div class="overlay-primary-1" />
-    </header>
+<header class="top-row overlay-wrap">
+    <a href="">어떤 프로그래머의 비망록</a>
+    <button class="sidebar-toggler" aria-label="sidebar-toggler" @onclick="ToggleNavMenu">
+        <span class="fas fa-bars" area-hidden="true" />
+    </button>
+    <div class="overlay-primary-1" />
+</header>
 
+<main>
     <div class="@ContentCssClass content">
         @Body
     </div>
