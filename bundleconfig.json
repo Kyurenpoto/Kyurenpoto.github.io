@@ -1,0 +1,28 @@
+[
+    {
+        "outputFileName": "wwwroot/bundles/styles.css",
+        "inputFiles": [
+            "wwwroot/styles/app.css",
+            "wwwroot/styles/idle.css",
+            "wwwroot/styles/index.css",
+            "wwwroot/styles/post.css",
+            "wwwroot/styles/post-collection.css"
+        ],
+        "minify": {
+            "enabled": false,
+            "adjustRelativePaths": true
+        }
+    },
+    {
+        "outputFileName": "wwwroot/bundles/scripts.js",
+        "inputFiles": [
+            "wwwroot/scripts/redirect-history.min.js",
+            "wwwroot/scripts/brotli.decode.min.js",
+            "wwwroot/scripts/blazor-starter.min.js"
+        ],
+        "minify": {
+            "enabled": false
+        },
+        "sourceMap": false
+    }
+]
