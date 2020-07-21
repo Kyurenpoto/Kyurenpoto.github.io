@@ -7,10 +7,8 @@
     {
         <div class="card-wrapper overlay-wrap">
             <article class="post-summary-card">
-                <header>
-                    <div class="card-title">
-                        <NavLink href="@item.Path">@item.Title</NavLink>
-                    </div>
+                <header class="card-header">
+                    <NavLink class="card-title" href="@item.Path">@item.Title</NavLink>
                     <div class="card-modified">@item.DateModified</div>
                     <div class="card-created">@item.DateCreated</div>
                 </header>
@@ -20,7 +18,7 @@
                     </div>
                     <div class="card-description">@item.Description</div>
                 </div>
-                <footer>
+                <footer class="card-footer">
                     <div class="card-tags">
                         @foreach(var tag in item.Tags.Split(";"))
                         {
