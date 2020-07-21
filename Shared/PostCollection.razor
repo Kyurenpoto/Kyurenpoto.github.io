@@ -1,5 +1,3 @@
-<Link Href="styles/post-collection.css" Rel="stylesheet" />
-
 <h1>@title</h1>
 
 <section class="post-collection">
@@ -14,9 +12,11 @@
                 </header>
                 <div class="card-contents">
                     <div class="card-image">
-                        <img src="@item.PathCardImage" alt="@item.ImageDescription">
+                        <img class="fit-img" src="@item.PathCardImage" alt="@item.ImageDescription">
                     </div>
-                    <div class="card-description">@item.Description</div>
+                    <div class="card-description">
+                        <p>@item.Description</p>
+                    </div>
                 </div>
                 <footer class="card-footer">
                     <div class="card-tags">

@@ -3,13 +3,10 @@
         "outputFileName": "wwwroot/bundles/styles.css",
         "inputFiles": [
             "wwwroot/styles/app.css",
-            "wwwroot/styles/idle.css",
-            "wwwroot/styles/index.css",
-            "wwwroot/styles/post.css",
             "wwwroot/styles/post-collection.css"
         ],
         "minify": {
-            "enabled": false,
+            "enabled": true,
             "adjustRelativePaths": true
         }
     },
