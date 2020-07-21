@@ -1,10 +1,5 @@
-.collection-wrapper {
-    display: grid;
-    grid-template-columns: 1fr;
-}
-
 .post-collection {
-    grid-column: 1;
+    width: 100%;
     display: flex;
     flex-direction: row-reverse;
     flex-wrap: wrap;
@@ -15,13 +10,7 @@
 .card-wrapper {
     margin-bottom: 32px;
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
 }
-
-    .card-wrapper > .overlay-wrap {
-        grid-column: 1;
-    }
 
 .post-summary-card {
     padding: 16px;
@@ -81,23 +70,15 @@
     }
 
 @media (min-width: 768px) {   
-    .collection-wrapper {
-        grid-template-columns: 1fr 8fr;
-    }
-
     .post-collection {
-        grid-column: 2;
-    }
-
-    .card-wrapper {
-        width: 100%;
-        display: grid;
-        grid-template-columns: 3fr 1fr;
+        width: calc(100% / 9 * 7);
+        margin-right: calc(100% / 9);
+        margin-left: calc(100% / 9);
     }
 }
 
 @media (min-width: 1368px) {       
     .card-wrapper {
-        width: 50%;
+        width: calc(100% / 7 * 3);
     }
 }

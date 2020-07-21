@@ -2,41 +2,37 @@
 
 <h1>@title</h1>
 
-<div class="collection-wrapper">
-    <section class="post-collection">
-        @foreach (var item in Cards.Where(x => x.Category.Equals(collectionName)))
-        {
-            <div class="card-wrapper">
-                <div class="overlay-wrap">
-                    <article class="post-summary-card">
-                        <header>
-                            <div class="card-title">
-                                <NavLink href="@item.Path">@item.Title</NavLink>
-                            </div>
-                            <div class="card-modified">@item.DateModified</div>
-                            <div class="card-created">@item.DateCreated</div>
-                        </header>
-                        <div class="card-contents">
-                            <div class="card-image">
-                                <img src="@item.PathCardImage" alt="@item.ImageDescription">
-                            </div>
-                            <div class="card-description">@item.Description</div>
-                        </div>
-                        <footer>
-                            <div class="card-tags">
-                                @foreach(var tag in item.Tags.Split(";"))
-                                {
-                                    <NavLink href="">@tag</NavLink>
-                                }
-                            </div>
-                        </footer>
-                    </article>
-                    <div class="overlay-secondary-bg-1" />
+<section class="post-collection">
+    @foreach (var item in Cards.Where(x => x.Category.Equals(collectionName)))
+    {
+        <div class="card-wrapper overlay-wrap">
+            <article class="post-summary-card">
+                <header>
+                    <div class="card-title">
+                        <NavLink href="@item.Path">@item.Title</NavLink>
+                    </div>
+                    <div class="card-modified">@item.DateModified</div>
+                    <div class="card-created">@item.DateCreated</div>
+                </header>
+                <div class="card-contents">
+                    <div class="card-image">
+                        <img src="@item.PathCardImage" alt="@item.ImageDescription">
+                    </div>
+                    <div class="card-description">@item.Description</div>
                 </div>
-            </div>
-        }
-    </section>
-</div>
+                <footer>
+                    <div class="card-tags">
+                        @foreach(var tag in item.Tags.Split(";"))
+                        {
+                            <NavLink href="">@tag</NavLink>
+                        }
+                    </div>
+                </footer>
+            </article>
+            <div class="overlay-secondary-bg-1" />
+        </div>
+    }
+</section>
 
 @code {
     [Parameter]
