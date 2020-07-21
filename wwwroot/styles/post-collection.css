@@ -37,17 +37,9 @@
     gap: 8px;
 }
 
-.card-image {
-    display: flex;
-    justify-content: center;
-}
-
 .card-description {
     overflow: hidden;
     text-overflow: ellipsis;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .card-tags {
