@@ -22,4 +22,13 @@
         margin-left: 240px;
         width: calc(100vw - 240px);
     }
+
+    .content {
+        display: grid;
+        grid-template-columns: 15% 70% 15%;
+    }
+
+    .content-wrap {
+        grid-column: 2;
+    }
 }
