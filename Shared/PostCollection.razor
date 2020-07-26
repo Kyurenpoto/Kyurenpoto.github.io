@@ -1,7 +1,7 @@
-<h1>@title</h1>
+<h1>@(title + " (" + Collections.Count() + ")")</h1>
 
 <section class="post-collection">
-    @foreach (var item in Cards.Where(x => x.Category.Equals(collectionName)))
+    @foreach (var item in Collections)
     {
         <div class="card-wrapper overlay-wrap">
             <article class="post-summary-card">
@@ -35,17 +35,6 @@
     [Parameter]
     public string title { get; set; }
 
-    public static Dictionary<string, List<int>> Collections = new Dictionary<string, List<int>>
-    {
-        {
-            "machine-learning",
-            new List<int>
-            {
-                1
-            }
-        }
-    };
-
     public class PostCard
     {
         public string Path { get; set; }
@@ -74,4 +63,16 @@
             DateModified = new DateTime(2020, 07, 05, 02, 12, 22)
         },
     };
+
+    private List<PostCard> collections = null;
+    public List<PostCard> Collections
+    {
+        get
+        {
+            if (collections == null)
+                collections = Cards.Where(x => x.Category.Equals(collectionName)).ToList();
+
+            return collections;
+        }
+    }
 }
