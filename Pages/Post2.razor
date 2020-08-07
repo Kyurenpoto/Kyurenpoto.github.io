@@ -11,7 +11,8 @@
     <p>논문의 초록, 서론, 결론을 종합하면 다음과 같다.</p>
     <ol>
         <li>최신 NN 아키텍쳐 검색 알고리즘에서는 Convolution을 기본 모듈로 사용한다.</li>
-        <li>Fully-Connected NN으로부터 CNN을 유도하기 위해 LASSO의 변형인 LASSO<katex-expression expression='-\beta' katex-options='{ "displayMode": false , "throwOnError": true }' />를 사용했다.</li>
+        <li>Fully-Connected NN으로부터 CNN을 유도하기 위해 MDL을 사용했다.</li>
+        <li>FCN이 더 잘 학습할 수 있도록 LASSO의 변형인 LASSO<katex-expression expression='-\beta' katex-options='{ "displayMode": false , "throwOnError": true }' />를 사용했다.</li>
     </ol>
 
     <p>LASSO는 Cost Function에 네트워크 가중치의 L1 Norm을 더해주는 Regularization. Feature Selection 효과.</p>
@@ -24,4 +25,5 @@
         <li>FC의 구조가 문제: 3-FC와 S-FC는 Parameter 수와 Depth가 같지만, S-FC가 성능이 좋음. S-FC는 첫 레이어에서 3-FC에 비해 더 많은 뉴런을 가짐.</li>
     </ol>
     <p>논문의 나머지는 Local-FC 차이를 좁히는 과정.</p>
+    <p><a href="https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/understanding-machine-learning-theory-algorithms.pdf">Shalev-Shwartz and Ben-David, 2014</a>에서 정의한 Minimum Description Language(이하 MDL)<katex-expression expression='L_D\left(h\right)\le L_S\left(h\right)+\sqrt{\frac{\left\lvert d\left(h\right)\right\rvert+\log{2/\delta}}{2m}}' katex-options='{ "displayMode": false , "throwOnError": true }' />을 보면, Generalization-gap은 모델의 파라미터 수로 통제. 그러나 지금까지의 많은 아키텍쳐들을 볼 때, 아키텍쳐를 잘 골라서 파라미터 수를 확장하면 성능이 저하되지 않음. 적은 파라미터로 트레이닝 데이터에 피팅하는 아키텍쳐가 우월함.</p>
 </div>
