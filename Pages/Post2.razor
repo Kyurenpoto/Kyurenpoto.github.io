@@ -12,7 +12,7 @@
     <ol>
         <li>최신 NN 아키텍쳐 검색 알고리즘에서는 Convolution을 기본 모듈로 사용한다.</li>
         <li>Fully-Connected NN으로부터 CNN을 유도하기 위해 MDL을 사용했다.</li>
-        <li>FCN이 더 잘 학습할 수 있도록 LASSO의 변형인 LASSO<katex-expression expression='-\beta' katex-options='{ "displayMode": false , "throwOnError": true }' />를 사용했다.</li>
+        <li>FCN이 더 잘 학습할 수 있도록 LASSO의 변형인 <katex-expression expression='\beta-' katex-options='{ "displayMode": false , "throwOnError": true }' />LASSO를 사용했다.</li>
     </ol>
 
     <p>LASSO는 Cost Function에 네트워크 가중치의 L1 Norm을 더해주는 Regularization. Feature Selection 효과.</p>
@@ -25,5 +25,12 @@
         <li>FC의 구조가 문제: 3-FC와 S-FC는 Parameter 수와 Depth가 같지만, S-FC가 성능이 좋음. S-FC는 첫 레이어에서 3-FC에 비해 더 많은 뉴런을 가짐.</li>
     </ol>
     <p>논문의 나머지는 Local-FC 차이를 좁히는 과정.</p>
-    <p><a href="https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/understanding-machine-learning-theory-algorithms.pdf">Shalev-Shwartz and Ben-David, 2014</a>에서 정의한 Minimum Description Language(이하 MDL)<katex-expression expression='L_D\left(h\right)\le L_S\left(h\right)+\sqrt{\frac{\left\lvert d\left(h\right)\right\rvert+\log{2/\delta}}{2m}}' katex-options='{ "displayMode": false , "throwOnError": true }' />을 보면, Generalization-gap은 모델의 파라미터 수로 통제. 그러나 지금까지의 많은 아키텍쳐들을 볼 때, 아키텍쳐를 잘 골라서 파라미터 수를 확장하면 성능이 저하되지 않음. 적은 파라미터로 트레이닝 데이터에 피팅하는 아키텍쳐가 우월함.</p>
+    <p><a href="https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/understanding-machine-learning-theory-algorithms.pdf">Shalev-Shwartz and Ben-David, 2014</a>에서 정의한 Minimum Description Language(이하 MDL) <katex-expression expression='L_D\left(h\right)\le L_S\left(h\right)+\sqrt{\frac{\left\lvert d\left(h\right)\right\rvert+\log{2/\delta}}{2m}}' katex-options='{ "displayMode": false , "throwOnError": true }' />을 보면, Generalization-gap은 모델의 파라미터 수로 통제. 그러나 지금까지의 많은 아키텍쳐들을 볼 때, 아키텍쳐를 잘 골라서 파라미터 수를 확장하면 성능이 저하되지 않음. 적은 파라미터로 트레이닝 데이터에 피팅하는 아키텍쳐가 우월.</p>
+    <p>아키텍쳐를 고려하면 MDL은 다음과 같이 표현: <katex-expression expression='L_D\left(f_w\right)\le L_S\left(f_w\right)+\sqrt{\frac{\left\lvert kb+d\left(g\right)\right\rvert+\log{2n/\delta}}{2m}}' katex-options='{ "displayMode": false , "throwOnError": true }' /> 이는 학습된 모델의 용량이 매개변수의 비트수와 weight-sharing의 description length 두 항으로 제한된다는 뜻. weight-sharing이 구조화될 때 더 효율적으로 인코딩되며, 이 때 generalization은 잠재적으로 아키텍쳐 검색에서 찾은 최종 모델의 파라미터 수에만 의존.</p>
+    <div class="img-wrap">
+        <img class="fit-img" src="assets/images/beta-lasso.png" alt="beta lasso algorithm">
+    </div>
+    <p>sparse connectivity를 위해 L1 Regularization 사용. 보다 공격적인 임계값을 위해 추가 파라미터 <katex-expression expression='\beta' katex-options='{ "displayMode": false , "throwOnError": true }' /> 사용.</p>
+    <p>S-FC 학습 결과. 파라미터의 순서를 섞어도 학습에는 문제 없음. 컨볼루션에 해당하는 레이어에 대해 <katex-expression expression='\lambda' katex-options='{ "displayMode": false , "throwOnError": true }' />가 높으면 sparsity에 이점. <katex-expression expression='\beta-' katex-options='{ "displayMode": false , "throwOnError": true }' />LASSO로 학습된 NN은 데이터로부터 sparse-sampling처럼 보이는 필터를 학습.</p>
+    <p>S-Conv 학습 결과. 다양한 커널 크기로 ResNet18을 학습해 SGD와 비교해보니, 모두 SGD보다 향상.</p>
 </div>
