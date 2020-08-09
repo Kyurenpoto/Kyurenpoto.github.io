@@ -1,0 +1,65 @@
+﻿@page "/post/3"
+
+<MetaTags title="기초 집합론 정리 - " description="기초 집합론 정리" route="/post/3" keywords="math, set theory" pathImage="assets/images/sine-curve.png" />
+
+<Link Href="styles/post.css" Rel="stylesheet" />
+
+<div class="content-wrap">
+    <h1>기초 집합론 정리</h1>
+    <p>절대 잊어먹을 일이 없지만 기초부터 확실하게 하기 위해 정리. 그래도 고등학교 수학에 있는 부분은 패스.</p>
+
+    <h2>관계</h2>
+    <p>반사관계: <katex-expression expression='\forall x\in A\quad xRx' katex-options='{ "displayMode": false , "throwOnError": true }' /></p>
+    <p>대칭관계: <katex-expression expression='xRy\Leftrightarrow yRx' katex-options='{ "displayMode": false , "throwOnError": true }' /></p>
+    <p>추이관계: <katex-expression expression='xRy\land yRz \Rightarrow xRz' katex-options='{ "displayMode": false , "throwOnError": true }' /></p>
+    <p>동치관계: 반사성, 대칭성, 추이성 모두 만족</p>
+    <p>동치류: 특정 원소와 특정 동치관계가 있는 모든 원소</p>
+    <p>상집합: 집합에서 특정 동치관계에 의한 동치류들을 모두 모은 집합</p>
+    <p>분할: 어떤 집합의 부분집합들의 모임에 대해, 모임의 원소들이 공집합이 아니고 서로소이며 모임의 모든 원소들의 합집합이 모임이 정의된 집합인 경우</p>
+    <p>비교가능관계: <katex-expression expression='\forall x,y\in A\quad xRy\lor yRx' katex-options='{ "displayMode": false , "throwOnError": true }' /></p>
+    <p>비반사관계: <katex-expression expression='\nexists x\in A\quad xRx' katex-options='{ "displayMode": false , "throwOnError": true }' /></p>
+    <p>순서관계: 비교가능성, 비반사성, 추이성</p>
+    <p>순서형: 두 집합 사이에 순서를 보존하는 함수가 존재할 때, 두 집합은 같은 순서형을 가짐</p>
+    <p>사전식 순서관계: <katex-expression expression='\forall a_1,a_2\in A\forall b_1,b_2\in B\quad a_1\times a_2\lt b_1\times b_2 \Leftrightarrow \left(a_1\lt_A a_2\lor a_1=a_2\right)\land b_1\lt_B b_2' katex-options='{ "displayMode": false , "throwOnError": true }' /></p>
+    <p>최대원소: <katex-expression expression='A_0\sube A,\exist b\in A_0\forall x\in A_0\quad x\le b' katex-options='{ "displayMode": false , "throwOnError": true }' /></p>
+    <p>최소원소: <katex-expression expression='A_0\sube A,\exist b\in A_0\forall x\in A_0\quad a\le x' katex-options='{ "displayMode": false , "throwOnError": true }' /></p>
+    <p>상계: <katex-expression expression='A_0\sube A,\exist b\in A_0\forall x\in A\quad x\le b' katex-options='{ "displayMode": false , "throwOnError": true }' /></p>
+    <p>하계: <katex-expression expression='A_0\sube A,\exist b\in A_0\forall x\in A\quad a\le x' katex-options='{ "displayMode": false , "throwOnError": true }' /></p>
+    <p>최소상계<katex-expression expression='\left(\sup A_0\right)' katex-options='{ "displayMode": false , "throwOnError": true }' />: 최소원소인 상계</p>
+    <p>최대하계<katex-expression expression='\left(\inf A_0\right)' katex-options='{ "displayMode": false , "throwOnError": true }' />: 최대원소인 하계</p>
+    <p>최소상계 성질: 순서집합의 부분집합 중 최소상계를 갖는 부분집합이 존재하는 경우</p>
+    <p>최대하계 성질: 순서집합의 부분집합 중 최대하계를 갖는 부분집합이 존재하는 경우</p>
+    
+    <h2>정수와 실수</h2>
+    <p>정렬성질: 모든 공집합이 아닌 자연수집합의 부분집합은 최소원소를 가짐</p>
+    <p>귀납원리: 자연수로 이루어진 귀납적 집합은 자연수집합</p>
+    
+    <h2>데카르트 곱</h2>
+    <p>첨수집합족: <katex-expression expression='\left\{A_{\alpha}\right\}_{\alpha\in J}' katex-options='{ "displayMode": false , "throwOnError": true }' />, <katex-expression expression='J' katex-options='{ "displayMode": false , "throwOnError": true }' />는 첨수집합</p>
+    <p>m-짝: 1부터 m까지의 자연수집합을 첨수집합으로 하는 첨수함수에 대해, 해당 자연수집합의 각 원소에 대응되는 집합</p>
+    <p>유한 첨수집합족의 데카르트 곱: 첨수집합족의 모든 원소의 m-짝으로 이루어진 집합</p>
+    <p>w-짝: 자연수집합을 첨수집합으로 하는 첨수함수에 대해, 해당 자연수집합의 각 원소에 대응되는 집합</p>
+    <p>무한 첨수집합족의 데카르트 곱: 첨수집합족의 모든 원소의 w-짝으로 이루어진 집합</p>
+    
+    <h2>귀납적 정의</h2>
+    <p>유한집합: 어떤 집합과 어떤 자연수의 절단 사이에 일대응대응이 존재하는 경우</p>
+    <p>무한집합: 유한집합이 아닌 집합</p>
+    <p>무한가산집합: 무한집합과 자연수집합의 일대일대응이 존재하는 경우</p>
+    <p>가산집합: 유한집합이거나 무한가산집합인 집합</p>
+    <p>비가산집합: 가산집합이 아닌 집합</p>
+    <p>귀납적 정의: 점화식으로 주어진 정의</p>
+    <p>귀납적 정의의 원리: 점화식은 자연수집합을 정의역으로 하는 함수를 유일하게 결정함</p>
+
+    <h2>선택공리</h2>
+    <p>선택공리: 서로소이고 공집합이 아닌 집합들의 모임에 대해, 모임의 각 원소로부터 정확히 한 원소만을 선택해 이루어진 집합이 존재</p>
+    <p>정렬집합: 공집합이 아닌 모든 부분집합이 최소원소를 가지는 집합</p>
+    <p>정렬정리: 어떤 집합을 정렬집합으로 만드는 순서가 존재</p>
+    <p>절단: <katex-expression expression='S_{\alpha}=\left\{x\vert x\in X,x\lt\alpha\right\}' katex-options='{ "displayMode": false , "throwOnError": true }' />, <katex-expression expression='X' katex-options='{ "displayMode": false , "throwOnError": true }' />는 정렬집합</p>
+    <p>최소 비가산정렬집합: 모든 절단이 가산집합인 비가산정렬집합</p>
+
+    <h2>극대원리</h2>
+    <p>순부분순서: 비반사성, 추이성을 만족하는 순서</p>
+    <p>극대원리: 모든 집합은 극대 단순순서 부분집합이 존재</p>
+    <p>극대원소: <katex-expression expression='\exist m\in A\nexist a\in A\quad m\prec a' katex-options='{ "displayMode": false , "throwOnError": true }' /></p>
+    <p>Zorn의 보조정리: 순부분순서집합의 모든 단순순서 부분집합이 원본 집합에서 상계를 가지면, 원본 집합은 극대원소를 가짐</p>
+</div>
