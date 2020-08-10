@@ -32,5 +32,8 @@
         <img class="fit-img" src="assets/images/beta-lasso.png" alt="beta lasso algorithm">
     </div>
     <p><katex-expression expression='\beta-' katex-options='{ "displayMode": false , "throwOnError": true }' />LASSO는 공격적으로 파라미터를 줄이기 위해 추가 하이퍼 파라미터 <katex-expression expression='\beta' katex-options='{ "displayMode": false , "throwOnError": true }' />를 사용한다. 파라미터 절대값의 최소 크기를 정해서, 영향이 적은 파라미터를 제거하는 과정이 추가되었다.</p>
-    <p><katex-expression expression='\beta-' katex-options='{ "displayMode": false , "throwOnError": true }' />LASSO를 사용한 실험에서, 데이터의 순서를 바꿔도 학습에 문제가 없다는 특징이 발견되었다. 또한 학습된 NN이 데이터로부터 sparse-sampling 비슷한 필터를 학습한 것을 관찰했다. 단순 SGD보다 성능도 높다.</p>
+    <p><katex-expression expression='\beta-' katex-options='{ "displayMode": false , "throwOnError": true }' />LASSO를 사용한 실험에서, 데이터의 순서를 바꿔도 학습에 문제가 없다는 특징이 발견되었다. 또한 학습된 NN이 데이터로부터 sparse-sampling 비슷한 필터를 학습한 것을 관찰했다.</p>
+
+    <h2>고찰</h2>
+    <p><katex-expression expression='\beta-' katex-options='{ "displayMode": false , "throwOnError": true }' />LASSO의 가장 큰 문제는 Gradient 소멸은 어느 정도 방지할 수 있지만 Gradient 폭발은 그렇지 않다는 것이다. Gradient 소멸을 방지하기 위해서는 <katex-expression expression='\beta' katex-options='{ "displayMode": false , "throwOnError": true }' />를 1 이상으로 두면 된다. 그런데 이렇게 하면 DNN에서 무조건 Gradient 폭발이 일어난다. 이를 해결하려면 파라미터의 Clamp 및 각 레이어의 출력 값의 Normalization이 필요하다.</p>
 </div>
