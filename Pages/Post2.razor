@@ -17,17 +17,16 @@
 
     <h2>본문 요약</h2>
 
-    <p>LASSO는 Feature Selection 효과가 있다. 이걸 잘 활용해서 Fully-Connected NN으로 시작해 CNN 또는 그 이상의 성능을 얻는 것이 목표이다.</p>
-    <p>먼저 D-Conv, D-Local, D-FC, S-Conv, S-Local, S-FC, 3-FC에 대한 성능 측정을 통해 다음과 같은 경험적 사실을 얻는다.</p>
+    <p>저자들은 D-Conv, D-Local, D-FC, S-Conv, S-Local, S-FC, 3-FC에 대한 성능 측정을 통해 다음과 같은 사실을 관찰한다.</p>
     <ol>
-        <li>지역성: Local-FC 차이가 Conv-Local 차이보다 월등하다. 즉 Convolution의 주요한 이점은 지역성이다.</li>
-        <li>Shallow NN의 강점: Deep NN은 긴 epoch에서 성능 증가폭이 더디거나 오히려 감소하는 반면, Shallow NN은 일관적으로 성능이 증가한다.</li>
-        <li>Weight-Sharing이 없는 DNN의 성능 저하: S-FC는 D-FC를 이기고, 긴 epoch에서는 S-Local과 D-Local의 성능이 비슷하다.</li>
-        <li>FC의 구조: 3-FC와 S-FC는 Parameter 수와 Depth가 같지만, S-FC가 성능이 좋다. S-FC는 첫 레이어에서 3-FC에 비해 더 많은 뉴런을 가진다.</li>
+        <li>Convolution의 주요한 이점은 지역성이다.</li>
+        <li>Deep NN은 긴 epoch에서 성능 증가폭이 더디거나 오히려 감소하는 반면, Shallow NN은 일관적으로 성능이 증가한다.</li>
+        <li>Weight-Sharing이 없는 DNN은 성능이 저하한다.</li>
+        <li>같은 파라미터 수를 가지는 모델 중 초반부 파라미터가 많은 모델의 성능이 좋다.</li>
     </ol>
     <p><a href="https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/understanding-machine-learning-theory-algorithms.pdf">Shalev-Shwartz and Ben-David, 2014</a>에서 정의한 Minimum Description Language <katex-expression expression='L_D\left(h\right)\le L_S\left(h\right)+\sqrt{\frac{\left\lvert d\left(h\right)\right\rvert+\log{2/\delta}}{2m}}' katex-options='{ "displayMode": false , "throwOnError": true }' />을 보면, Generalization-Gap은 모델의 파라미터 수로 통제할 수 있다. 그러나 지금까지 제시된 딥러닝 아키텍쳐들을 볼 때, 아키텍쳐를 잘 골라서 파라미터 수를 스케일하면 성능이 저하되지 않는다. 그 중에서도 적은 파라미터로 트레이닝 데이터에 피팅하는 아키텍쳐가 우월한 성능을 낸다.</p>
-    <p>위 식에서 아키텍쳐 선택 과정을 고려하면 다음과 같다: <katex-expression expression='L_D\left(f_w\right)\le L_S\left(f_w\right)+\sqrt{\frac{kb+\left\lvert d\left(g\right)\right\rvert+\log{2n/\delta}}{2m}}' katex-options='{ "displayMode": false , "throwOnError": true }' />. 이 공식에서는 학습된 모델의 용량이 매개변수의 비트수와 Weight-Sharing의 Description Length 두 항으로 제한된다는 것을 알 수 있다. Weight-Sharing이 구조화될 때 더 효율적으로 인코딩되며, 이 때 Generalization은 최종 모델의 파라미터 수에만 의존한다.</p>
-    <p>즉 파라미터 수를 줄이고 구조적으로 Weight-Sharing을 할 때, Generalization-Gap을 줄일 수 있다.</p>
+    <p>위 식에서 아키텍쳐 선택 과정을 고려하면 다음과 같다: <katex-expression expression='L_D\left(f_w\right)\le L_S\left(f_w\right)+\sqrt{\frac{kb+\left\lvert d\left(g\right)\right\rvert+\log{2n/\delta}}{2m}}' katex-options='{ "displayMode": false , "throwOnError": true }' /></p>
+    <p>이 공식에서는 학습된 모델의 용량이 매개변수의 비트수와 Weight-Sharing의 Description Length 두 항으로 제한된다는 것을 알 수 있다. Weight-Sharing이 구조화될 때 더 효율적으로 인코딩되며, 이 때 Generalization은 최종 모델의 파라미터 수에만 의존한다. 즉 파라미터 수를 줄이고 구조적으로 Weight-Sharing을 할 때, Generalization-Gap을 줄일 수 있다.</p>
     <p>파라미터를 효율적으로 줄이기 위해, <katex-expression expression='\beta-' katex-options='{ "displayMode": false , "throwOnError": true }' />LASSO를 사용한다.</p>
     <div class="img-wrap">
         <img class="fit-img" src="assets/images/beta-lasso.png" alt="beta lasso algorithm">
