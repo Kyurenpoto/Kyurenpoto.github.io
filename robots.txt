@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: http://kyurenpoto.github.io/blog/sitemap.xml
